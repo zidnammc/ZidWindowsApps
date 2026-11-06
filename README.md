@@ -4,6 +4,12 @@
 
 A Windows maintenance center: one desktop app to inspect and clean up a Windows PC — processes, auto-start entries, installed apps, junk files, system specs, and troubleshooting. Built with WPF on .NET 8.
 
+## Download
+
+Get the installer from [Releases](https://github.com/zidnammc/ZidWindowsApps/releases): `ZidWindowsApps-Setup-SelfContained-win-x64.exe` (49.6 MB, self-contained, no .NET runtime needed). Windows 10 / 11, 64-bit.
+
+Or build from source — see [Build](#build).
+
 ## Features
 
 - **Dashboard** — at-a-glance device status: CPU, RAM, disk space, startup items, running processes, and a health score.
@@ -19,7 +25,7 @@ A Windows maintenance center: one desktop app to inspect and clean up a Windows 
 
 ### Safety first
 
-Destructive actions — uninstall, registry deletion, disabling a service — **always ask for confirmation**, even if confirmations are turned off. Cleanup is guarded by `PathGuard`, which refuses container folders (Windows, Program Files, drive roots, user-profile roots). See [`bug-and-fixed-report.md`](bug-and-fixed-report.md) (in Indonesian) for the full list of bugs found in the original build and how they were fixed.
+Destructive actions — uninstall, registry deletion, disabling a service — **always ask for confirmation**, even if confirmations are turned off. Cleanup is guarded by `PathGuard`, which refuses container folders (Windows, Program Files, drive roots, user-profile roots).
 
 ## Requirements
 
@@ -58,7 +64,7 @@ Linux/CI: see `build-linux.sh` (needs the WPF/WinForms reference DLLs copied int
 ## Status and known limitations
 
 - Version **1.1.0**. The v1.1.0 self-contained installer was built from this source on 29 Oct 2026.
-- This snapshot is the cleaned-up rewrite of the original vibe-coded v1.0 app: the original installer was decompiled, audited, and rewritten into this project structure. Details (in Indonesian): [`bug-and-fixed-report.md`](bug-and-fixed-report.md).
+- This snapshot is the cleaned-up rewrite of the original vibe-coded v1.0 app: the original installer was decompiled, audited, and rewritten into this project structure.
 - The app icon (`launcher/app.ico`) is not included in this public snapshot, so builds use the default icon. Re-add the `.ico` file and restore the references in `ZidWindowsApps.csproj`, `launcher/launcher.rc`, and `installer/ZidWindowsApps.nsi` to get the custom icon back.
 - No screenshots yet. The UI language is Indonesian; English UI strings are planned.
 - Some features have only been verified by code review and build checks, not by running every flow on a real Windows machine from this exact tree.
