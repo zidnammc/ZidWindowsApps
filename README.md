@@ -11,7 +11,20 @@ A Windows maintenance center: one desktop app to inspect and clean up a Windows 
 
 ## Screenshots
 
-_Screenshots coming soon._
+![Dashboard](docs/screenshots/dashboard.png)
+*Dashboard — health score, active processes, auto-start items, and free space.*
+
+![Processes](docs/screenshots/processes.png)
+*Processes — CPU, RAM, publisher, and location; system processes hidden by default.*
+
+![Auto-start](docs/screenshots/auto-start.png)
+*Auto-start — enable or disable startup entries reversibly.*
+
+![Uninstaller](docs/screenshots/uninstaller.png)
+*Uninstaller — desktop and Store apps, with leftover scan.*
+
+![Cleanup](docs/screenshots/cleanup.png)
+*Cleanup — per-category junk scan; cleaned files go to the Recycle Bin.*
 
 ## Download
 
@@ -84,7 +97,7 @@ Linux/CI: see `build-linux.sh` (needs the WPF/WinForms reference DLLs copied int
 - Version **1.1.0**. The v1.1.0 self-contained installer was built from this source on 29 Oct 2026.
 - This snapshot is the cleaned-up rewrite of the original vibe-coded v1.0 app: the original installer was decompiled, audited, and rewritten into this project structure.
 - The app icon (`launcher/app.ico`) is not included in this public snapshot, so builds use the default icon. Re-add the `.ico` file and restore the references in `ZidWindowsApps.csproj`, `launcher/launcher.rc`, and `installer/ZidWindowsApps.nsi` to get the custom icon back.
-- Screenshots are coming soon — see [Screenshots](#screenshots). The UI language is Indonesian; English UI strings are planned.
+- The UI language is Indonesian; English UI strings are planned.
 - Some features have only been verified by code review and build checks, not by running every flow on a real Windows machine from this exact tree.
 
 ## Contributing
