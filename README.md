@@ -10,6 +10,15 @@ Get the installer from [Releases](https://github.com/zidnammc/ZidWindowsApps/rel
 
 Or build from source — see [Build](#build).
 
+## Installation
+
+1. Download `ZidWindowsApps-Setup-SelfContained-win-x64.exe` from [Releases](https://github.com/zidnammc/ZidWindowsApps/releases).
+2. Double-click it and approve the Administrator prompt — the installer needs admin rights.
+3. Follow the wizard: Welcome → choose the install folder (default `C:\Program Files\ZidWindowsApps`) → choose components (the Desktop shortcut is optional) → Install → Finish. Tick **Run ZidWindowsApps** on the last page to launch it right away.
+4. No .NET runtime to install: the self-contained package bundles it. Works on Windows 10 / 11, 64-bit.
+
+If the app is running, the installer stops it first. To uninstall, use Windows Settings → Apps → ZidWindowsApps → Uninstall, or run `Uninstall.exe` in the install folder — this also removes the scheduled cleanup task.
+
 ## Features
 
 - **Dashboard** — at-a-glance device status: CPU, RAM, disk space, startup items, running processes, and a health score.
