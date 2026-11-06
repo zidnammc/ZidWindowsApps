@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    UI dimuat saat runtime dari Resources/*.xaml (XamlReader), bukan dikompilasi menjadi BAML.
+    Dengan begitu proyek ini bisa dibuild dengan satu perintah di Windows maupun Linux/CI
+    tanpa MSBuild task XAML milik Windows.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>ZidWindowsApps</AssemblyName>
+    <RootNamespace>ZidWindowsApps</RootNamespace>
+    <Version>1.1.0</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RollForward>LatestMajor</RollForward>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Product>ZidWindowsApps</Product>
+    <NoWarn>$(NoWarn);CA1416;CS8618</NoWarn>
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+    <StartupObject>ZidWindowsApps.Program</StartupObject>
+  </PropertyGroup>
+
+  <!-- Build di Windows: SDK WPF/WinForms standar -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseAppHost>true</UseAppHost>
+    <!-- ApplicationIcon was launcher\app.ico; the icon file is not shipped in
+         this public snapshot (binary asset), so the default icon is used.
+         Re-add launcher\app.ico and this line to restore the custom icon. -->
+  </PropertyGroup>
+
+  <!-- Build lintas-platform (Linux/CI): referensi WPF/WinForms diambil dari folder refs/ -->
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TargetFramework>net8.0</TargetFramework>
+    <UseAppHost>false</UseAppHost>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+    <Reference Include="PresentationFramework"><HintPath>refs/PresentationFramework.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PresentationCore"><HintPath>refs/PresentationCore.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="WindowsBase"><HintPath>refs/WindowsBase.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Xaml"><HintPath>refs/System.Xaml.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Windows.Forms"><HintPath>refs/System.Windows.Forms.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Drawing.Common"><HintPath>refs/System.Drawing.Common.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Windows.Extensions"><HintPath>refs/System.Windows.Extensions.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Windows.Forms.Primitives"><HintPath>refs/System.Windows.Forms.Primitives.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\MainWindow.xaml" LogicalName="ZidWindowsApps.Resources.MainWindow.xaml" />
+    <EmbeddedResource Include="Resources\Styles.xaml" LogicalName="ZidWindowsApps.Resources.Styles.xaml" />
+  </ItemGroup>
+
+</Project>

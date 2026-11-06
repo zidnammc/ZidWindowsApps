@@ -1,0 +1,29 @@
+# Build outputs
+bin/
+obj/
+out/
+dist/
+dist-selfcontained-win-x64/
+dist-selfcontained-win-arm64/
+ZidWindowsApps-Setup*.exe
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Reference DLLs for Linux/CI builds (Microsoft binaries, not shipped)
+refs/*.dll
+
+# Native launcher build artefacts
+launcher/*.exe
+launcher/*.res
+
+# App icon (binary asset, not shipped in the public snapshot)
+launcher/app.ico
+
+# Logs
+*.log
