@@ -1,8 +1,17 @@
 # ZidWindowsApps
 
+[![CI](https://github.com/zidnammc/ZidWindowsApps/actions/workflows/ci.yml/badge.svg)](https://github.com/zidnammc/ZidWindowsApps/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/zidnammc/ZidWindowsApps)](https://github.com/zidnammc/ZidWindowsApps/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://img.shields.io/github/downloads/zidnammc/ZidWindowsApps/total.svg)](https://github.com/zidnammc/ZidWindowsApps/releases)
+
 > **Early stage.** This is a work in progress, published as-is. Many features still need polish, and the UI text is currently in Indonesian — an English UI is on the roadmap.
 
 A Windows maintenance center: one desktop app to inspect and clean up a Windows PC — processes, auto-start entries, installed apps, junk files, system specs, and troubleshooting. Built with WPF on .NET 8.
+
+## Screenshots
+
+_Screenshots coming soon._
 
 ## Download
 
@@ -75,12 +84,12 @@ Linux/CI: see `build-linux.sh` (needs the WPF/WinForms reference DLLs copied int
 - Version **1.1.0**. The v1.1.0 self-contained installer was built from this source on 29 Oct 2026.
 - This snapshot is the cleaned-up rewrite of the original vibe-coded v1.0 app: the original installer was decompiled, audited, and rewritten into this project structure.
 - The app icon (`launcher/app.ico`) is not included in this public snapshot, so builds use the default icon. Re-add the `.ico` file and restore the references in `ZidWindowsApps.csproj`, `launcher/launcher.rc`, and `installer/ZidWindowsApps.nsi` to get the custom icon back.
-- No screenshots yet. The UI language is Indonesian; English UI strings are planned.
+- Screenshots are coming soon — see [Screenshots](#screenshots). The UI language is Indonesian; English UI strings are planned.
 - Some features have only been verified by code review and build checks, not by running every flow on a real Windows machine from this exact tree.
 
 ## Contributing
 
-Issues and pull requests are welcome. This is a personal early-stage project, so please keep changes small and focused, and describe what you tested on Windows.
+Issues and pull requests are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) first — this is a personal early-stage project, so keep changes small and focused, and describe what you tested on Windows.
 
 ## License
 
