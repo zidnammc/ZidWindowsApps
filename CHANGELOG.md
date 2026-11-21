@@ -1,5 +1,9 @@
 # Perubahan ZidWindowsApps
 
+## v1.2.1 beta.1 — 21 November 2026
+
+- Aplikasi langsung membuka jendela utama dalam keadaan dimaksimalkan. Taskbar, judul, serta tombol perkecil, pulihkan, dan tutup tetap tersedia, termasuk saat memakai UI lama.
+
 ## v1.2.1 beta — 21 November 2026
 
 ### Diperbaiki

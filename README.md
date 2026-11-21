@@ -1,4 +1,4 @@
-# ZidWindowsApps 1.2.1 beta
+# ZidWindowsApps 1.2.1 beta.1
 
 Pusat perawatan Windows (WPF, .NET 8): proses, auto-start, uninstaller + leftover, pembersihan, spesifikasi,
 troubleshooting, tools. Detail perbaikan: lihat [CHANGELOG.md](CHANGELOG.md).
@@ -10,11 +10,11 @@ Prasyarat: .NET SDK 8+, NSIS.
 
 | Perintah | Hasil |
 |---|---|
-| `./build.ps1` | `ZidWindowsApps-Setup-1.2.1-beta-framework.exe` (±0,4 MB). Butuh .NET Desktop Runtime 8+ di PC tujuan. |
-| `./build.ps1 -SelfContained` | `ZidWindowsApps-Setup-1.2.1-beta-win-x64.exe`. Runtime ikut dibundel, tanpa prasyarat. |
+| `./build.ps1` | `ZidWindowsApps-Setup-1.2.1-beta.1-framework.exe` (±0,4 MB). Butuh .NET Desktop Runtime 8+ di PC tujuan. |
+| `./build.ps1 -SelfContained` | `ZidWindowsApps-Setup-1.2.1-beta.1-win-x64.exe`. Runtime ikut dibundel, tanpa prasyarat. |
 | `./build.ps1 -SelfContained -Rid win-arm64` | Versi self-contained untuk Windows ARM64. |
 
-Hasil build Windows berada di `bin/packages/1.2.1-beta/`.
+Hasil build Windows berada di `bin/packages/1.2.1-beta.1/`.
 
 Build self-contained pertama butuh internet (runtime pack dari NuGet). Hanya aplikasi: `dotnet publish -c Release -o dist`.
 
