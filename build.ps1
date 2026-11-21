@@ -13,16 +13,18 @@ param(
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
+$version = ([xml](Get-Content -Raw -LiteralPath "ZidWindowsApps.csproj")).Project.PropertyGroup.Version | Where-Object { $_ }
+$package = "bin/packages/$version"
 if ($SelfContained) {
-    $dist = "dist-selfcontained-$Rid"
-    $out  = "ZidWindowsApps-Setup-SelfContained-$Rid.exe"
+    $dist = "$package/$Rid"
+    $out  = "$package/ZidWindowsApps-Setup-$version-$Rid.exe"
     # ReadyToRun mempercepat startup. Trimming TIDAK dipakai (tidak aman untuk WPF + runtime XAML).
     dotnet publish ZidWindowsApps.csproj -c $Configuration -r $Rid --self-contained true `
-        -p:PublishReadyToRun=true -p:UseAppHost=true -o $dist
+        -p:PublishReadyToRun=true -p:UseAppHost=true -p:DebugType=None -p:DebugSymbols=false -o $dist
 } else {
-    $dist = "dist"
-    $out  = "ZidWindowsApps-Setup.exe"
-    dotnet publish ZidWindowsApps.csproj -c $Configuration -o $dist -p:UseAppHost=true
+    $dist = "$package/framework"
+    $out  = "$package/ZidWindowsApps-Setup-$version-framework.exe"
+    dotnet publish ZidWindowsApps.csproj -c $Configuration -o $dist -p:UseAppHost=true -p:DebugType=None -p:DebugSymbols=false
 }
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish gagal" }
 

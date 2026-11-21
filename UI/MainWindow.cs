@@ -27,7 +27,7 @@ public sealed partial class MainWindow : Window
 
     public MainWindow()
     {
-        Title = "ZidWindowsApps";
+        Title = "ZidWindowsApps " + App.DisplayVersion;
         Width = 1100;
         Height = 760;
         MinWidth = 900;

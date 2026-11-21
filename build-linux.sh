@@ -12,4 +12,4 @@ cat > dist/ZidWindowsApps.runtimeconfig.json <<'JSON'
 { "runtimeOptions": { "tfm": "net8.0", "rollForward": "LatestMajor",
   "frameworks": [ { "name": "Microsoft.NETCore.App", "version": "8.0.0" }, { "name": "Microsoft.WindowsDesktop.App", "version": "8.0.0" } ] } }
 JSON
-makensis -DBIN_DIR="$PWD/dist" -DOUT_FILE="$PWD/ZidWindowsApps-Setup.exe" installer/ZidWindowsApps.nsi
+makensis -DBIN_DIR="$PWD/dist" -DOUT_FILE="$PWD/ZidWindowsApps-Setup-1.2.1-beta-framework.exe" installer/ZidWindowsApps.nsi

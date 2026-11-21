@@ -29,7 +29,7 @@ ManifestDPIAware true
 !endif
 
 !define APP_NAME      "ZidWindowsApps"
-!define APP_VERSION   "1.2.0"
+!define APP_VERSION   "1.2.1 beta"
 !define APP_PUBLISHER "Zid"
 !define APP_EXE       "ZidWindowsApps.exe"
 !define UNINST_KEY    "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
@@ -48,7 +48,7 @@ InstallDir "$PROGRAMFILES64\${APP_NAME}"
 InstallDirRegKey HKLM "Software\${APP_NAME}" "InstallDir"
 BrandingText "${APP_NAME} ${APP_VERSION}"
 
-VIProductVersion "1.2.0.0"
+VIProductVersion "1.2.1.0"
 VIAddVersionKey "ProductName" "${APP_NAME}"
 VIAddVersionKey "CompanyName" "${APP_PUBLISHER}"
 VIAddVersionKey "FileDescription" "Installer ${APP_NAME}"
@@ -90,6 +90,7 @@ FunctionEnd
 ; ------------------------------------------------------------------ pemeriksaan .NET Desktop Runtime >= 8
 Var DotNetFound
 
+!ifndef SELF_CONTAINED
 Function CheckDotNetKey
   ; $0 = nama key arsitektur (x64 / arm64)
   StrCpy $1 0
@@ -111,6 +112,8 @@ Function CheckDotNetKey
     ${EndIf}
   ${Loop}
 FunctionEnd
+
+!endif
 
 Function .onInit
   SetRegView 64

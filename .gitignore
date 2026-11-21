@@ -6,3 +6,5 @@ refs/*.dll
 launcher/*.exe
 launcher/*.res
 *.user
+/dist-selfcontained-*/
+/ZidWindowsApps-Setup*.exe

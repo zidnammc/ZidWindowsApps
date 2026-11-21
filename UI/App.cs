@@ -13,6 +13,9 @@ namespace ZidWindowsApps;
 
 public sealed class App : System.Windows.Application
 {
+    public static string DisplayVersion { get; } = typeof(App).Assembly
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()!.InformationalVersion.Replace('-', ' ');
+
     public static AppSettings Settings { get; private set; } = new();
     internal static void UseSettings(AppSettings settings) => Settings = settings;
     public static ActivityLogger Logger { get; private set; } = new();

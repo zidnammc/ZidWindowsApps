@@ -54,7 +54,7 @@ internal abstract partial class FluentWindow : Window
 
     protected void InitializeShell()
     {
-        Title = "ZidWindowsApps";
+        Title = "ZidWindowsApps " + App.DisplayVersion;
         Width = 1280;
         Height = 760;
         MinWidth = 980;
@@ -68,7 +68,7 @@ internal abstract partial class FluentWindow : Window
         SetColors();
         root = Xaml<Grid>("Shell.xaml");
         Content = root;
-        Get<TextBlock>("VersionLabel").Text = "v" + typeof(FluentWindow).Assembly.GetName().Version!.ToString(3);
+        Get<TextBlock>("VersionLabel").Text = App.DisplayVersion;
         Get<Button>("Collapse").Click += (_, _) =>
         {
             Collapsed = !Collapsed;
