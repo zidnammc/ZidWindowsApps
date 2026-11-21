@@ -56,7 +56,7 @@ public sealed partial class MainWindow
         var size = selected.Sum(i => i.Size);
         var files = selected.Sum(i => i.FileCount);
         var message = $"Pindahkan {files:N0} file ({Format.Bytes(size)}) dari {selected.Count} item ke Recycle Bin?";
-        if (selected.Any(i => i.Category.StartsWith("Downloads", StringComparison.Ordinal)))
+        if (selected.Any(i => i.RequiresIndividualSelection))
             message += "\n\nTermasuk file dari folder Downloads. Pastikan Anda tidak membutuhkannya.";
         if (selected.Any(i => i.Category.Contains("Browser", StringComparison.OrdinalIgnoreCase) || i.Category.StartsWith("Cache Microsoft Edge") || i.Category.StartsWith("Cache Google Chrome")))
             message += "\n\nTutup Edge/Chrome terlebih dahulu agar cache bisa dibersihkan.";

@@ -67,6 +67,7 @@ public sealed class CleanupService
                     Path = file,
                     Size = len,
                     Files = new List<string> { file },
+                    RequiresIndividualSelection = true,
                     Selected = false, // jangan pernah terpilih otomatis
                 });
             }

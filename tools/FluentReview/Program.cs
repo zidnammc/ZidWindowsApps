@@ -67,6 +67,37 @@ static class Review
 
     static void Click(Button b) => b.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
     static Button Button(Window w, string name) => Find<Button>(w).First(b => b.IsVisible && (Equals(b.Content, name) || AutomationProperties.GetName(b) == name));
+    private static void CheckCleanupSelection(Window window)
+    {
+        var type = window.GetType();
+        const BindingFlags fields = BindingFlags.Instance | BindingFlags.NonPublic;
+        var rows = (List<CleanupItem>)type.GetField("cache", fields)!.GetValue(window)!;
+        var cacheItem = new CleanupItem { Category = "Cache", Selected = false };
+        var download = new CleanupItem { Category = "Downloads > 30 hari (periksa manual)", RequiresIndividualSelection = true, Selected = false };
+        rows.Add(cacheItem);
+        rows.Add(download);
+        type.GetField("scanned", fields)!.SetValue(window, true);
+        try
+        {
+            Call(window, "Navigate", "cleanup");
+            Update(window);
+            var selectAll = (CheckBox)Find<DataGrid>(window).Single().Columns[0].Header;
+            selectAll.IsChecked = true;
+            selectAll.RaiseEvent(new RoutedEventArgs(CheckBox.ClickEvent));
+            Assert(cacheItem.Selected && !download.Selected, "B-01: Downloads ikut tercentang oleh pilihan massal");
+            download.Selected = true;
+            selectAll.IsChecked = false;
+            selectAll.RaiseEvent(new RoutedEventArgs(CheckBox.ClickEvent));
+            Assert(!cacheItem.Selected && !download.Selected, "Batalkan semua pilihan");
+            Console.WriteLine("PASS pilihan massal mempertahankan konfirmasi Downloads");
+        }
+        finally
+        {
+            rows.Clear();
+            type.GetField("scanned", fields)!.SetValue(window, false);
+        }
+    }
+
     private static void CheckFixtures(Window w)
     {
         var root = Path.Combine(Path.GetTempPath(), "ZidWindowsApps-review-" + Guid.NewGuid().ToString("N"));
@@ -139,6 +170,7 @@ static class Review
                 Assert(!loading.Contains(route), "Timeout " + route);
                 Assert(!Find<TextBlock>(w).Any(t => t.Text == "Gagal memuat halaman"), "Error page " + route);
             }
+            CheckCleanupSelection(w);
             foreach (var route in keys)
             {
                 Call(w, "Navigate", route); WaitReady(route);

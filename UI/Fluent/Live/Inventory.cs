@@ -291,7 +291,7 @@ internal sealed partial class LiveWindow
             var rows = cache.Where(x => x.Selected).ToList();
             if (rows.Count == 0)
                 return;
-            ConfirmWork("Kirim file terpilih ke Recycle Bin?", rows.Sum(x => x.FileCount) + " file · " + Format.Bytes(rows.Sum(x => x.Size)) + ". " + (rows.Any(r => r.Category.StartsWith("Downloads")) ? "Termasuk Downloads. " : "") + "Tutup browser sebelum membersihkan cache.", "Kirim Terpilih", async (ct, progress) =>
+            ConfirmWork("Kirim file terpilih ke Recycle Bin?", rows.Sum(x => x.FileCount) + " file · " + Format.Bytes(rows.Sum(x => x.Size)) + ". " + (rows.Any(r => r.RequiresIndividualSelection) ? "Termasuk Downloads. " : "") + "Tutup browser sebelum membersihkan cache.", "Kirim Terpilih", async (ct, progress) =>
             {
                 try
                 {
@@ -309,20 +309,26 @@ internal sealed partial class LiveWindow
         var selectAll = new CheckBox
         {
             Content = "Semua",
-            ToolTip = "Pilih semua kategori yang terlihat"
+            ToolTip = "Pilih kategori otomatis. Centang file Downloads satu per satu."
         };
         void Total()
         {
             var rows = cache.Where(x => x.Selected).ToList();
             total.Text = "Terpilih · " + Format.Bytes(rows.Sum(x => x.Size));
             clean.IsEnabled = rows.Count > 0;
-            selectAll.IsChecked = rows.Count == 0 ? false : rows.Count == cache.Count ? true : null;
+            var eligible = cache.Where(item => !item.RequiresIndividualSelection).ToList();
+            selectAll.IsEnabled = eligible.Count > 0 || rows.Count > 0;
+            selectAll.IsChecked = rows.Count == 0 ? false : eligible.All(item => item.Selected) ? true : null;
         }
 
         selectAll.Click += (_, _) =>
         {
+            bool select = selectAll.IsChecked == true;
             foreach (var item in cache)
-                item.Selected = selectAll.IsChecked == true;
+            {
+                if (!select || !item.RequiresIndividualSelection)
+                    item.Selected = select;
+            }
             Total();
         };
         var box = new FrameworkElementFactory(typeof(CheckBox));

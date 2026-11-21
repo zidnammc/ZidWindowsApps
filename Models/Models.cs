@@ -88,6 +88,7 @@ public sealed class CleanupItem : INotifyPropertyChanged
     public string Category { get; init; } = "";
     public string Path { get; init; } = "";
     public long Size { get; init; }
+    public bool RequiresIndividualSelection { get; init; }
     public int FileCount => Files.Count;
     public string SizeText => Format.Bytes(Size);
     public List<string> Files { get; init; } = new();
