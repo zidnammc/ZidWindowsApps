@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    UI dimuat saat runtime dari Resources/*.xaml (XamlReader), bukan dikompilasi menjadi BAML.
+    Dengan begitu proyek ini bisa dibuild dengan satu perintah di Windows maupun Linux/CI
+    tanpa MSBuild task XAML milik Windows.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>ZidWindowsApps</AssemblyName>
+    <RootNamespace>ZidWindowsApps</RootNamespace>
+    <Version>1.2.0</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RollForward>LatestMajor</RollForward>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Product>ZidWindowsApps</Product>
+    <NoWarn>$(NoWarn);CA1416;CS8618</NoWarn>
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+    <StartupObject>ZidWindowsApps.Program</StartupObject>
+  </PropertyGroup>
+
+  <!-- Build di Windows: SDK WPF/WinForms standar -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseAppHost>true</UseAppHost>
+    <ApplicationIcon>launcher\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <!-- Build lintas-platform (Linux/CI): referensi WPF/WinForms diambil dari folder refs/ -->
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TargetFramework>net8.0</TargetFramework>
+    <UseAppHost>false</UseAppHost>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+    <Reference Include="PresentationFramework"><HintPath>refs/PresentationFramework.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PresentationCore"><HintPath>refs/PresentationCore.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="WindowsBase"><HintPath>refs/WindowsBase.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Xaml"><HintPath>refs/System.Xaml.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Windows.Forms"><HintPath>refs/System.Windows.Forms.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Drawing.Common"><HintPath>refs/System.Drawing.Common.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Windows.Extensions"><HintPath>refs/System.Windows.Extensions.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Windows.Forms.Primitives"><HintPath>refs/System.Windows.Forms.Primitives.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="UI\Fluent\**\*.cs;tools\FluentReview\**\*.cs" />
+    <EmbeddedResource Remove="tools\FluentReview\**\*" />
+    <None Remove="tools\FluentReview\**\*" />
+    <EmbeddedResource Include="Resources\MainWindow.xaml" LogicalName="ZidWindowsApps.Resources.MainWindow.xaml" />
+    <EmbeddedResource Include="Resources\Styles.xaml" LogicalName="ZidWindowsApps.Resources.Styles.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="UI\Fluent\FluentWindow.cs;UI\Fluent\Components.cs;UI\Fluent\Live\*.cs" />
+    <EmbeddedResource Include="UI\Fluent\*.xaml" LogicalName="ZidWindowsApps.Fluent.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(OS)' == 'Windows_NT'">
+    <DefineConstants>$(DefineConstants);FLUENT_PREVIEW</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' and '$(OS)' == 'Windows_NT'">
+    <Compile Include="UI\Fluent\*.cs" Exclude="UI\Fluent\FluentWindow.cs;UI\Fluent\Components.cs" />
+    <EmbeddedResource Include="UI\Fluent\PreviewData.json"
+                      LogicalName="ZidWindowsApps.Fluent.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

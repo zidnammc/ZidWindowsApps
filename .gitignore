@@ -1,0 +1,8 @@
+bin/
+obj/
+out/
+dist/
+refs/*.dll
+launcher/*.exe
+launcher/*.res
+*.user

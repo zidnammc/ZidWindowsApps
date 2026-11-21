@@ -1,0 +1,34 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="{DynamicResource Page}" TextElement.Foreground="{DynamicResource Ink}">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Border Background="{DynamicResource Chrome}" BorderBrush="{DynamicResource Line}" BorderThickness="0,0,0,1" Padding="12,8">
+    <DockPanel>
+      <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+        <Button x:Name="Collapse" Content="&#xE700;" Style="{DynamicResource IconButton}" AutomationProperties.Name="Ukuran sidebar" ToolTip="Ukuran sidebar"/>
+        <Border Width="34" Height="34" CornerRadius="9" Margin="5,0,10,0"><Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#3B82F6" Offset="0"/><GradientStop Color="#4F46E5" Offset="1"/></LinearGradientBrush></Border.Background><TextBlock Text="Z" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/></Border>
+        <StackPanel VerticalAlignment="Center"><StackPanel Orientation="Horizontal"><TextBlock Text="ZidWindowsApps" FontSize="15" FontWeight="Bold"/><TextBlock x:Name="VersionLabel" Margin="7,2,0,0" Style="{DynamicResource Caption}"/></StackPanel><TextBlock Text="Windows Maintenance &amp; System Center" Style="{DynamicResource Caption}"/></StackPanel>
+      </StackPanel>
+      <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+        <TextBlock x:Name="Access" VerticalAlignment="Center" Margin="12,0,10,0"/>
+        <Button x:Name="Elevation"/>
+        <Button x:Name="Refresh" Content="&#xE72C;" Style="{DynamicResource IconButton}" AutomationProperties.Name="Segarkan" ToolTip="Segarkan"/>
+        <Button x:Name="Theme" Content="&#xE708;" Style="{DynamicResource IconButton}" AutomationProperties.Name="Ganti tema" ToolTip="Ganti tema"/>
+      </StackPanel>
+      <Button x:Name="Search" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Pencarian cepat…     Ctrl+K"/>
+    </DockPanel>
+  </Border>
+  <Grid Grid.Row="1">
+    <Grid.ColumnDefinitions><ColumnDefinition x:Name="Rail" Width="230"/><ColumnDefinition/></Grid.ColumnDefinitions>
+    <Border Background="{DynamicResource Sidebar}" BorderBrush="{DynamicResource Line}" BorderThickness="0,0,1,0" Padding="8,10">
+      <DockPanel><StackPanel x:Name="Pinned" DockPanel.Dock="Bottom"/><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel x:Name="Navigation"/></ScrollViewer></DockPanel>
+    </Border>
+    <DockPanel Grid.Column="1" Margin="20,16,20,10" MaxWidth="1160">
+      <StackPanel DockPanel.Dock="Top" Margin="0,0,0,14"><TextBlock x:Name="PageTitle" FontSize="22" FontWeight="Bold"/><TextBlock x:Name="Subtitle" Style="{DynamicResource Caption}" FontSize="13"/></StackPanel>
+      <ContentControl x:Name="Viewport" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+    </DockPanel>
+  </Grid>
+  <Border Grid.Row="2" Background="{DynamicResource Chrome}" BorderBrush="{DynamicResource Line}" BorderThickness="0,1,0,0" Padding="14,6">
+    <DockPanel><TextBlock x:Name="Telemetry" DockPanel.Dock="Right" Style="{DynamicResource Caption}" FontFamily="Consolas"/><TextBlock x:Name="Status" Style="{DynamicResource Caption}" Text="Siap"/></DockPanel>
+  </Border>
+  <Grid x:Name="Overlay" Grid.RowSpan="3" Visibility="Collapsed" Background="#80000000"/>
+  <Border x:Name="Toast" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource Card}" Visibility="Collapsed"><TextBlock x:Name="ToastText" MaxWidth="350" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"/></Border>
+</Grid>

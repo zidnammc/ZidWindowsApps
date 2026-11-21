@@ -1,0 +1,695 @@
+{
+  "Processes": [
+    {
+      "pid": 9132,
+      "name": "chrome.exe",
+      "cpu": 0.8,
+      "ramMb": 276.05,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 9880,
+      "parentPid": 9132,
+      "name": "chrome.exe",
+      "cpu": 0.0,
+      "ramMb": 269.26,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 8620,
+      "parentPid": 9132,
+      "name": "chrome.exe",
+      "cpu": 0.0,
+      "ramMb": 159.64,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 6268,
+      "name": "ZidWindowsApps.exe",
+      "cpu": 23.4,
+      "ramMb": 138.38,
+      "status": "Aplikasi",
+      "publisher": "ZidWindowsApps",
+      "path": "C:\\Program Files\\ZidWindowsApps\\ZidWindowsApps.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 7072,
+      "name": "chrome.exe",
+      "cpu": 0.8,
+      "ramMb": 89.36,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 6164,
+      "name": "MicrosoftSecurityApp.exe",
+      "cpu": 0.0,
+      "ramMb": 69.41,
+      "status": "Aplikasi",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\Program Files\\WindowsApps\\Microsoft.6365217CE6EB4\\MicrosoftSecurityApp.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 5292,
+      "name": "msedgewebview2.exe",
+      "cpu": 0.0,
+      "ramMb": 58.2,
+      "status": "Aplikasi",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\158.0.4370\\msedgewebview2.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 10828,
+      "name": "chrome.exe",
+      "cpu": 0.0,
+      "ramMb": 54.2,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 1060,
+      "name": "chrome.exe",
+      "cpu": 0.0,
+      "ramMb": 47.24,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 7428,
+      "name": "chrome.exe",
+      "cpu": 0.0,
+      "ramMb": 39.19,
+      "status": "Aplikasi",
+      "publisher": "Google LLC",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 9748,
+      "name": "msedgewebview2.exe",
+      "cpu": 0.0,
+      "ramMb": 37.7,
+      "status": "Aplikasi",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\158.0.4370\\msedgewebview2.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 7456,
+      "name": "MessagingPlugin.exe",
+      "cpu": 0.3,
+      "ramMb": 20.64,
+      "status": "Tidak dikenal",
+      "publisher": "Tidak terverifikasi",
+      "path": "C:\\ProgramData\\Lenovo\\Udc\\Hosts\\x64\\MessagingPlugin.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 9200,
+      "name": "DefenderSessionHelper.exe",
+      "cpu": 0.0,
+      "ramMb": 0.88,
+      "status": "Aplikasi",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26100.4-0\\DefenderSessionHelper.exe",
+      "isSystem": false
+    },
+    {
+      "pid": 1412,
+      "name": "dwm.exe",
+      "cpu": 1.4,
+      "ramMb": 112.4,
+      "status": "Sistem",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\Windows\\System32\\dwm.exe",
+      "isSystem": true
+    },
+    {
+      "pid": 884,
+      "name": "svchost.exe",
+      "cpu": 0.2,
+      "ramMb": 64.15,
+      "status": "Sistem",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\Windows\\System32\\svchost.exe",
+      "isSystem": true
+    },
+    {
+      "pid": 4120,
+      "name": "explorer.exe",
+      "cpu": 0.5,
+      "ramMb": 94.8,
+      "status": "Sistem",
+      "publisher": "Microsoft Corporation",
+      "path": "C:\\Windows\\explorer.exe",
+      "isSystem": true
+    }
+  ],
+  "Startup": [
+    {
+      "id": "as-1",
+      "name": "RtkAudUService",
+      "enabled": true,
+      "location": "HKLM\\Run",
+      "command": "\"C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64\\RtkAudUService64.exe\""
+    },
+    {
+      "id": "as-2",
+      "name": "GoogleChromeAutoLaunch_332B10",
+      "enabled": false,
+      "location": "HKCU\\Run",
+      "command": "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --no-startup-window /prefetch:5"
+    },
+    {
+      "id": "as-3",
+      "name": "LenovoVantageToolbar",
+      "enabled": false,
+      "location": "HKCU\\Run",
+      "command": "C:\\ProgramData\\Lenovo\\Vantage\\AddinData\\LenovoBatteryGaugeAddin\\x64\\QSHelper.exe"
+    },
+    {
+      "id": "as-4",
+      "name": "SecurityHealth",
+      "enabled": false,
+      "location": "HKLM\\Run",
+      "command": "C:\\WINDOWS\\system32\\SecurityHealthSystray.exe"
+    },
+    {
+      "id": "as-5",
+      "name": "ClickToRunSvc",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeClickToRun.exe\" /service"
+    },
+    {
+      "id": "as-6",
+      "name": "CodexSandboxService.OpenAI.Codex",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1007.9446.0\\resources\\codex-windows-sandbox.exe\""
+    },
+    {
+      "id": "as-7",
+      "name": "edgeupdate",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe\" /svc"
+    },
+    {
+      "id": "as-8",
+      "name": "GoogleUpdaterInternalService149.0",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files (x86)\\Google\\GoogleUpdater\\149.0.7814.0\\updater.exe\" --system --windows-service"
+    },
+    {
+      "id": "as-9",
+      "name": "GoogleUpdaterService149.0.7814.0",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files (x86)\\Google\\GoogleUpdater\\149.0.7814.0\\updater.exe\" --system --service=update"
+    },
+    {
+      "id": "as-10",
+      "name": "gupdate",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files (x86)\\Google\\Update\\GoogleUpdate.exe\" /svc"
+    },
+    {
+      "id": "as-11",
+      "name": "LADMLauncherService",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files\\Lenovo\\LADMLauncherService\\bin\\LADMAutoInstallService.exe\""
+    },
+    {
+      "id": "as-12",
+      "name": "LenovoVantageService",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files (x86)\\Lenovo\\VantageService\\5.1.2609.9\\LenovoVantageService.exe\""
+    },
+    {
+      "id": "as-13",
+      "name": "MDCoreSvc",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26100.4-0\\MpDefenderCoreService.exe\""
+    },
+    {
+      "id": "as-14",
+      "name": "MoiveBox Video Service",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files\\MovieboxClient\\MovieboxService.exe\""
+    },
+    {
+      "id": "as-15",
+      "name": "WMPNetworkSvc",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "\"C:\\Program Files\\Windows Media Player\\wmpnetwk.exe\""
+    },
+    {
+      "id": "as-16",
+      "name": "WsAppService3",
+      "enabled": false,
+      "location": "Windows Service",
+      "command": "C:\\Program Files (x86)\\Wondershare\\WAF3\\3.0.0.308\\WsAppService3.exe"
+    }
+  ],
+  "Apps": [
+    {
+      "id": "app-1",
+      "name": "Google Chrome",
+      "version": "148.0.7778.168",
+      "publisher": "Google LLC",
+      "type": "Desktop",
+      "size": "412 MB",
+      "installDate": "12/11/2026",
+      "location": "C:\\Program Files\\Google\\Chrome\\Application",
+      "leftovers": [
+        {
+          "id": "lo-1",
+          "kind": "Folder",
+          "path": "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\User Data\\Crashpad",
+          "size": "18,4 MB",
+          "checked": true
+        },
+        {
+          "id": "lo-2",
+          "kind": "Registry",
+          "path": "HKCU\\Software\\Google\\Chrome\\BLBeacon",
+          "size": "4 KB",
+          "checked": true
+        },
+        {
+          "id": "lo-3",
+          "kind": "Folder",
+          "path": "C:\\ProgramData\\Google\\Update\\Log",
+          "size": "2,1 MB",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "app-2",
+      "name": "Git",
+      "version": "2.56.0.2",
+      "publisher": "The Git Development Community",
+      "type": "Desktop",
+      "size": "318 MB",
+      "installDate": "04/10/2026",
+      "location": "C:\\Program Files\\Git\\",
+      "leftovers": [
+        {
+          "id": "lo-4",
+          "kind": "Registry",
+          "path": "HKLM\\SOFTWARE\\GitForWindows",
+          "size": "2 KB",
+          "checked": true
+        },
+        {
+          "id": "lo-5",
+          "kind": "Folder",
+          "path": "C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Git",
+          "size": "1,2 MB",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "app-3",
+      "name": "GitHub CLI",
+      "version": "2.102.0",
+      "publisher": "GitHub, Inc.",
+      "type": "Desktop",
+      "size": "64 MB",
+      "installDate": "05/10/2026",
+      "location": "C:\\Program Files\\GitHub CLI\\",
+      "leftovers": [
+        {
+          "id": "lo-6",
+          "kind": "Folder",
+          "path": "C:\\Users\\Lenovo\\AppData\\Roaming\\GitHub CLI",
+          "size": "128 KB",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "app-4",
+      "name": "AMD Chipset Software",
+      "version": "4.06.10.651",
+      "publisher": "Advanced Micro Devices, Inc.",
+      "type": "Desktop",
+      "size": "195 MB",
+      "installDate": "19/08/2026",
+      "location": "C:\\Program Files (x86)\\AMD\\Chipset_Software",
+      "leftovers": [
+        {
+          "id": "lo-7",
+          "kind": "Folder",
+          "path": "C:\\AMD\\Chipset_Software_Logs",
+          "size": "14,6 MB",
+          "checked": true
+        },
+        {
+          "id": "lo-8",
+          "kind": "Registry",
+          "path": "HKLM\\SOFTWARE\\AMD\\CN",
+          "size": "6 KB",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "app-5",
+      "name": "Antigravity 2.33.0",
+      "version": "2.33.0",
+      "publisher": "Google",
+      "type": "Desktop",
+      "size": "284 MB",
+      "installDate": "18/11/2026",
+      "location": "C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Antigravity",
+      "leftovers": [
+        {
+          "id": "lo-9",
+          "kind": "Folder",
+          "path": "C:\\Users\\Lenovo\\AppData\\Roaming\\Antigravity\\Cache",
+          "size": "46,2 MB",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "app-6",
+      "name": "cloudflared",
+      "version": "2026.10.5",
+      "publisher": "Cloudflare, Inc.",
+      "type": "Desktop",
+      "size": "38 MB",
+      "installDate": "01/11/2026",
+      "location": "C:\\Program Files (x86)\\cloudflared",
+      "leftovers": []
+    },
+    {
+      "id": "app-7",
+      "name": "K-Lite Mega Codec Pack 19.9.5",
+      "version": "19.9.5",
+      "publisher": "KLCP",
+      "type": "Desktop",
+      "size": "112 MB",
+      "installDate": "22/09/2026",
+      "location": "C:\\Program Files (x86)\\K-Lite Codec Pack\\",
+      "leftovers": [
+        {
+          "id": "lo-10",
+          "kind": "Registry",
+          "path": "HKCU\\Software\\MPC-HC",
+          "size": "8 KB",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "app-8",
+      "name": "4505Fortemedia.FMAPOControl",
+      "version": "1.0.38.0",
+      "publisher": "DC696A1A-C35B-41EC-9C89-CC577F52",
+      "type": "Store",
+      "size": "24 MB",
+      "installDate": "14/07/2026",
+      "location": "C:\\Program Files\\WindowsApps\\4505Fortemedia.FMAPOControl_1.0.38.0_x64",
+      "leftovers": [
+        {
+          "id": "lo-11",
+          "kind": "Folder",
+          "path": "C:\\Users\\Lenovo\\AppData\\Local\\Packages\\4505Fortemedia.FMAPOControl",
+          "size": "1,4 MB",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "app-9",
+      "name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+      "version": "10.23.10022.0",
+      "publisher": "0A0B0503-04C2-4CCF-9BC2-4F164DC8",
+      "type": "Store",
+      "size": "148 MB",
+      "installDate": "14/07/2026",
+      "location": "C:\\Program Files\\WindowsApps\\AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+      "leftovers": []
+    },
+    {
+      "id": "app-10",
+      "name": "DolbyLaboratories.DolbyAudio",
+      "version": "3.20900.902.0",
+      "publisher": "58D26209-1D57-482C-B403-B655571B",
+      "type": "Store",
+      "size": "42 MB",
+      "installDate": "14/07/2026",
+      "location": "C:\\Program Files\\WindowsApps\\DolbyLaboratories.DolbyAudio_3.20900.902.0_x64",
+      "leftovers": []
+    },
+    {
+      "id": "app-11",
+      "name": "E046963F.LenovoCompanion",
+      "version": "10.2608.62.0",
+      "publisher": "8F32EFB2-B494-4AEC-A27C-4B073625",
+      "type": "Store",
+      "size": "176 MB",
+      "installDate": "15/09/2026",
+      "location": "C:\\Program Files\\WindowsApps\\E046963F.LenovoCompanion_10.2608.62.0_x64",
+      "leftovers": []
+    },
+    {
+      "id": "app-12",
+      "name": "E0469640.LenovoUtility",
+      "version": "4.7.18.0",
+      "publisher": "20E7E2C9-A2A9-4A02-BB29-6FCFB9E0",
+      "type": "Store",
+      "size": "31 MB",
+      "installDate": "15/09/2026",
+      "location": "C:\\Program Files\\WindowsApps\\E0469640.LenovoUtility_4.7.18.0_x64",
+      "leftovers": []
+    }
+  ],
+  "Cleanup": [
+    {
+      "id": "cl-1",
+      "category": "Cache Google Chrome",
+      "files": 9428,
+      "sizeMb": 1136.64,
+      "sizeLabel": "1,11 GB",
+      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\User Data",
+      "checked": true,
+      "isBrowser": true
+    },
+    {
+      "id": "cl-2",
+      "category": "File sementara pengguna",
+      "files": 1005,
+      "sizeMb": 642.29,
+      "sizeLabel": "642,29 MB",
+      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Temp\\",
+      "checked": true,
+      "isBrowser": false
+    },
+    {
+      "id": "cl-3",
+      "category": "Cache Microsoft Edge",
+      "files": 2462,
+      "sizeMb": 229.08,
+      "sizeLabel": "229,08 MB",
+      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Microsoft\\Edge\\User Data",
+      "checked": true,
+      "isBrowser": true
+    },
+    {
+      "id": "cl-4",
+      "category": "Cache thumbnail Explorer",
+      "files": 15,
+      "sizeMb": 18.11,
+      "sizeLabel": "18,11 MB",
+      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Microsoft\\Windows\\Explorer",
+      "checked": true,
+      "isBrowser": false
+    },
+    {
+      "id": "cl-5",
+      "category": "File sementara Windows",
+      "files": 62,
+      "sizeMb": 10.04,
+      "sizeLabel": "10,04 MB",
+      "path": "C:\\WINDOWS\\Temp",
+      "checked": true,
+      "isBrowser": false
+    },
+    {
+      "id": "cl-6",
+      "category": "Cache Windows Update",
+      "files": 4,
+      "sizeMb": 7.59,
+      "sizeLabel": "7,59 MB",
+      "path": "C:\\WINDOWS\\SoftwareDistribution\\Download",
+      "checked": true,
+      "isBrowser": false
+    },
+    {
+      "id": "cl-7",
+      "category": "Crash dump aplikasi",
+      "files": 3,
+      "sizeMb": 4.35,
+      "sizeLabel": "4,35 MB",
+      "path": "C:\\Users\\Lenovo\\AppData\\Local\\CrashDumps",
+      "checked": true,
+      "isBrowser": false
+    },
+    {
+      "id": "cl-8",
+      "category": "Riwayat file terbaru (Recent)",
+      "files": 63,
+      "sizeMb": 0.05,
+      "sizeLabel": "48,66 KB",
+      "path": "C:\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\Windows\\Recent",
+      "checked": true,
+      "isBrowser": false
+    }
+  ],
+  "Tools": [
+    {
+      "id": "tr-1",
+      "title": "Internet dan DNS",
+      "desc": "Cek konfigurasi IP, konektivitas gateway keluar, latensi ping, dan resolusi DNS.",
+      "requiresAdmin": false,
+      "risk": "Aman (Read-only)",
+      "logs": [
+        "[INFO] Memeriksa adaptor aktif: Wi-Fi (Qualcomm Atheros QCA61x4A)...",
+        "[OK]   IPv4 Address: 192.168.1.14 • Gateway: 192.168.1.1",
+        "[OK]   Resolusi DNS (dns.google / 8.8.8.8): 18 ms",
+        "[OK]   Koneksi internet keluar terverifikasi normal tanpa packet loss."
+      ]
+    },
+    {
+      "id": "tr-2",
+      "title": "Windows Update",
+      "desc": "Periksa layanan wuauserv, BITS, dan status antrean pembaruan sistem Windows 11 25H2.",
+      "requiresAdmin": true,
+      "risk": "Menengah (Restart Service)",
+      "logs": [
+        "[INFO] Mengecek status layanan Windows Update (wuauserv)...",
+        "[OK]   Layanan wuauserv berjalan normal (PID 3412).",
+        "[OK]   Database SoftwareDistribution dalam kondisi konsisten.",
+        "[INFO] Tidak ditemukan pembaruan yang macet (stuck)."
+      ]
+    },
+    {
+      "id": "tr-3",
+      "title": "Performa saat ini",
+      "desc": "Analisis beban CPU, tekanan memori (RAM 88%), dan antrean I/O disk sistem.",
+      "requiresAdmin": false,
+      "risk": "Aman (Diagnostik)",
+      "logs": [
+        "[INFO] Mengambil sampel telemetri 5 detik terakhir...",
+        "[OK]   CPU AMD 3020e: 24% utilisasi (stabil, suhu normal).",
+        "[WARN] Penggunaan RAM tinggi: 88% (3,00 GB dari 3,38 GB terpakai).",
+        "[TIP]  Rekomendasi: Tutup tab Chrome berlebih (720+ MB) atau bersihkan cache."
+      ]
+    },
+    {
+      "id": "tr-4",
+      "title": "Baterai",
+      "desc": "Evaluasi kapasitas desain vs kapasitas penuh saat ini, siklus pengisian, dan status daya.",
+      "requiresAdmin": false,
+      "risk": "Aman (Read-only)",
+      "logs": [
+        "[INFO] Membaca ACPI Battery Control Method...",
+        "[OK]   Status saat ini: 34% (Status 1 - Discharging).",
+        "[OK]   Kesehatan sel baterai: 86% dari kapasitas desain pabrik.",
+        "[INFO] Estimasi waktu pakai tersisa: ± 1 jam 42 menit."
+      ]
+    },
+    {
+      "id": "tr-5",
+      "title": "Riwayat Blue Screen",
+      "desc": "Pindai folder C:\\Windows\\Minidump dan Event Log Kernel-Power (ID 41) dalam 30 hari terakhir.",
+      "requiresAdmin": false,
+      "risk": "Aman (Read-only)",
+      "logs": [
+        "[INFO] Memindai direktori C:\\Windows\\Minidump...",
+        "[OK]   0 file crash dump (.dmp) ditemukan dalam 30 hari terakhir.",
+        "[OK]   Tidak ada kejadian BugCheck / BSOD tercatat."
+      ]
+    },
+    {
+      "id": "tr-6",
+      "title": "Bersihkan cache DNS",
+      "desc": "Jalankan ipconfig /flushdns untuk menghapus entri resolver DNS yang kedaluwarsa.",
+      "requiresAdmin": false,
+      "risk": "Aman (Network Cache)",
+      "logs": [
+        "[EXEC] Menjalankan perintah: ipconfig /flushdns",
+        "[OK]   Windows IP Configuration: Successfully flushed the DNS Resolver Cache.",
+        "[DONE] Cache DNS berhasil disegarkan."
+      ]
+    },
+    {
+      "id": "tr-7",
+      "title": "Periksa file sistem (SFC)",
+      "desc": "Jalankan System File Checker (sfc /scannow) untuk memverifikasi integritas file terlindungi Windows.",
+      "requiresAdmin": true,
+      "risk": "Tinggi (System Scan)",
+      "logs": [
+        "[EXEC] Memulai pemindaian integritas sistem: sfc /verifyonly",
+        "[INFO] Verification 100% complete.",
+        "[OK]   Windows Resource Protection did not find any integrity violations."
+      ]
+    },
+    {
+      "id": "tr-8",
+      "title": "Periksa komponen Windows (DISM)",
+      "desc": "Jalankan DISM /Online /Cleanup-Image /CheckHealth untuk memeriksa korupsi Component Store.",
+      "requiresAdmin": true,
+      "risk": "Tinggi (Image Health)",
+      "logs": [
+        "[EXEC] DISM.exe /Online /Cleanup-Image /CheckHealth",
+        "[INFO] Deployment Image Servicing and Management tool (Version 10.0.26220.7872)",
+        "[OK]   No component store corruption detected. The operation completed successfully."
+      ]
+    },
+    {
+      "id": "tr-9",
+      "title": "Reset jaringan (Winsock & IP)",
+      "desc": "Reset katalog Winsock dan stack TCP/IP ke konfigurasi awal Windows.",
+      "requiresAdmin": true,
+      "risk": "Tinggi (Memerlukan Restart)",
+      "logs": [
+        "[EXEC] netsh winsock reset",
+        "[OK]   Sucessfully reset the Winsock Catalog.",
+        "[EXEC] netsh int ip reset",
+        "[WARN] Anda harus me-restart komputer untuk menyelesaikan proses reset ini."
+      ]
+    }
+  ]
+}

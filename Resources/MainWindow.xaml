@@ -1,0 +1,327 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="{DynamicResource PageBrush}"
+      TextElement.Foreground="{DynamicResource TextBrush}">
+  <Grid.RowDefinitions>
+    <RowDefinition Height="Auto"/>
+    <RowDefinition Height="*"/>
+    <RowDefinition Height="Auto"/>
+  </Grid.RowDefinitions>
+
+  <!-- ============ HEADER ============ -->
+  <Border Grid.Row="0" Background="{DynamicResource HeaderBrush}" Padding="16,10">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="SidebarToggleButton" Grid.Column="0" Content="&#x2630;" Style="{DynamicResource HeaderButton}" Margin="0,0,12,0" ToolTip="Tampilkan/sembunyikan menu"/>
+      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+        <TextBlock x:Name="AppTitle" Text="ZidWindowsApps" FontSize="20" FontWeight="SemiBold" Foreground="White"/>
+        <TextBlock x:Name="AppSubtitle" Text="Pusat perawatan Windows yang mudah dan aman" Foreground="#B9C5D0"/>
+      </StackPanel>
+      <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+        <TextBlock x:Name="AdminStatus" Text="PENGGUNA BIASA" FontWeight="SemiBold" Foreground="#F5C26B" VerticalAlignment="Center"/>
+        <Button x:Name="ElevateButton" Content="Jalankan sebagai Administrator" Style="{DynamicResource HeaderButton}" Visibility="Collapsed"/>
+        <Button x:Name="RefreshDashboardButton" Content="Refresh" Style="{DynamicResource HeaderButton}"/>
+      </StackPanel>
+    </Grid>
+  </Border>
+
+  <!-- ============ BODY ============ -->
+  <Grid Grid.Row="1">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition x:Name="SidebarColumn" Width="170"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <Border x:Name="Sidebar" Grid.Column="0" Background="{DynamicResource SidebarBrush}">
+      <StackPanel Margin="0,10">
+        <Button x:Name="NavDashboard"    Content="Dashboard"       Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavProcesses"    Content="Proses"          Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavStartup"      Content="Auto-start"      Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavApps"         Content="Uninstaller"     Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavCleanup"      Content="Pembersihan"     Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavSystem"       Content="Spesifikasi"     Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavTroubleshoot" Content="Troubleshooting" Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavTools"        Content="Tools"           Style="{DynamicResource SidebarButton}"/>
+        <Button x:Name="NavSettings"     Content="Pengaturan"      Style="{DynamicResource SidebarButton}"/>
+      </StackPanel>
+    </Border>
+
+    <TabControl x:Name="MainTabs" Grid.Column="1" Background="Transparent" BorderThickness="0" Padding="16">
+
+      <!-- == Dashboard == -->
+      <TabItem x:Name="DashboardTab" Header="Dashboard">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel>
+            <TextBlock x:Name="WelcomeText" Text="Selamat datang di ZidWindowsApps" Style="{DynamicResource PageTitle}"/>
+            <TextBlock x:Name="WelcomeHint" Text="Gunakan menu di sebelah kiri untuk memeriksa dan merawat Windows." Style="{DynamicResource MutedText}" Margin="0,4,0,16"/>
+            <UniformGrid Columns="4">
+              <Border Style="{DynamicResource Card}"><StackPanel>
+                <TextBlock Text="Status perangkat" Style="{DynamicResource MutedText}"/>
+                <TextBlock x:Name="HealthValue" Text="-" FontSize="26" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+              <Border Style="{DynamicResource Card}"><StackPanel>
+                <TextBlock Text="Proses aktif" Style="{DynamicResource MutedText}"/>
+                <TextBlock x:Name="ProcessCountValue" Text="-" FontSize="26" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+              <Border Style="{DynamicResource Card}"><StackPanel>
+                <TextBlock Text="Auto-start aktif" Style="{DynamicResource MutedText}"/>
+                <TextBlock x:Name="StartupCountValue" Text="-" FontSize="26" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+              <Border Style="{DynamicResource Card}"><StackPanel>
+                <TextBlock Text="Ruang kosong (drive lokal)" Style="{DynamicResource MutedText}"/>
+                <TextBlock x:Name="FreeSpaceValue" Text="-" FontSize="26" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+            </UniformGrid>
+            <TextBlock x:Name="QuickActionsText" Text="Aksi cepat" FontSize="16" FontWeight="SemiBold" Margin="0,8,0,8"/>
+            <WrapPanel>
+              <Button x:Name="OpenCleanupButton" Content="Periksa sampah" Margin="0,0,8,8"/>
+              <Button x:Name="OpenSystemButton" Content="Periksa spesifikasi" Margin="0,0,8,8"/>
+              <Button x:Name="OpenTroubleshootButton" Content="Troubleshooting" Margin="0,0,8,8"/>
+              <Button x:Name="OpenAppsButton" Content="Aplikasi terpasang" Margin="0,0,8,8"/>
+            </WrapPanel>
+            <TextBlock x:Name="DashboardNote" Style="{DynamicResource MutedText}" Margin="0,12,0,0"
+                       Text="Tindakan yang mengubah sistem meminta konfirmasi. File yang dibersihkan dikirim ke Recycle Bin (ruang disk baru bebas setelah Recycle Bin dikosongkan)."/>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
+      <!-- == Proses == -->
+      <TabItem x:Name="ProcessesTab" Header="Proses">
+        <Grid>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="RefreshProcessesButton" Content="Refresh"/>
+            <TextBox x:Name="ProcessSearch" Width="230" Margin="0,0,12,0" ToolTip="Cari nama / publisher / lokasi"/>
+            <CheckBox x:Name="ShowSystemProcesses" Content="Tampilkan proses sistem"/>
+            <TextBlock x:Name="ProcessHint" Style="{DynamicResource MutedText}" VerticalAlignment="Center" Text="Proses sistem disembunyikan agar tidak terhenti tanpa sengaja."/>
+          </StackPanel>
+          <ListView x:Name="ProcessList" Grid.Row="1" SelectionMode="Single">
+            <ListView.View><GridView>
+              <GridViewColumn Header="Nama" Width="180" DisplayMemberBinding="{Binding Name}"/>
+              <GridViewColumn Header="PID" Width="70" DisplayMemberBinding="{Binding Id}"/>
+              <GridViewColumn Header="CPU %" Width="80" DisplayMemberBinding="{Binding Cpu, StringFormat={}{0:0.0}}"/>
+              <GridViewColumn Header="RAM" Width="100" DisplayMemberBinding="{Binding Memory}"/>
+              <GridViewColumn Header="Status" Width="120" DisplayMemberBinding="{Binding Classification}"/>
+              <GridViewColumn Header="Publisher" Width="220" DisplayMemberBinding="{Binding Publisher}"/>
+              <GridViewColumn Header="Lokasi" Width="500" DisplayMemberBinding="{Binding Path}"/>
+            </GridView></ListView.View>
+          </ListView>
+          <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+            <Button x:Name="KillProcessButton" Content="Hentikan proses" Style="{DynamicResource DangerButton}"/>
+            <Button x:Name="KillTreeButton" Content="Hentikan seluruh process tree" Style="{DynamicResource DangerButton}"/>
+          </StackPanel>
+        </Grid>
+      </TabItem>
+
+      <!-- == Auto-start == -->
+      <TabItem x:Name="StartupTab" Header="Auto-start">
+        <Grid>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="RefreshStartupButton" Content="Refresh"/>
+            <TextBlock x:Name="StartupHint" Style="{DynamicResource MutedText}" VerticalAlignment="Center"
+                       Text="Menonaktifkan item tidak menghapus apa pun dan bisa diaktifkan kembali kapan saja."/>
+          </StackPanel>
+          <ListView x:Name="StartupList" Grid.Row="1" SelectionMode="Extended">
+            <ListView.View><GridView>
+              <GridViewColumn Header="Nama" Width="200" DisplayMemberBinding="{Binding Name}"/>
+              <GridViewColumn Header="Status" Width="80" DisplayMemberBinding="{Binding StatusText}"/>
+              <GridViewColumn Header="Lokasi" Width="200" DisplayMemberBinding="{Binding Location}"/>
+              <GridViewColumn Header="Perintah" Width="650" DisplayMemberBinding="{Binding Command}"/>
+            </GridView></ListView.View>
+          </ListView>
+          <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+            <Button x:Name="DisableStartupButton" Content="Nonaktifkan yang dipilih" Style="{DynamicResource DangerButton}"/>
+            <Button x:Name="EnableStartupButton" Content="Aktifkan kembali yang dipilih"/>
+          </StackPanel>
+        </Grid>
+      </TabItem>
+
+      <!-- == Uninstaller == -->
+      <TabItem x:Name="AppsTab" Header="Uninstaller">
+        <Grid>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="2*"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+          <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="RefreshAppsButton" Content="Baca aplikasi"/>
+            <TextBox x:Name="AppSearch" Width="280" Margin="0,0,12,0" ToolTip="Cari aplikasi"/>
+            <TextBlock x:Name="AppsHint" Style="{DynamicResource MutedText}" VerticalAlignment="Center" Text="Aplikasi Store diberi tipe &quot;Store&quot;."/>
+          </StackPanel>
+          <ListView x:Name="AppsList" Grid.Row="1" SelectionMode="Single">
+            <ListView.View><GridView>
+              <GridViewColumn Header="Aplikasi" Width="310" DisplayMemberBinding="{Binding Name}"/>
+              <GridViewColumn Header="Versi" Width="130" DisplayMemberBinding="{Binding Version}"/>
+              <GridViewColumn Header="Publisher" Width="220" DisplayMemberBinding="{Binding Publisher}"/>
+              <GridViewColumn Header="Lokasi" Width="450" DisplayMemberBinding="{Binding InstallLocation}"/>
+              <GridViewColumn Header="Tipe" Width="80" DisplayMemberBinding="{Binding TypeText}"/>
+            </GridView></ListView.View>
+          </ListView>
+          <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,10">
+            <Button x:Name="UninstallButton" Content="Mulai uninstall" Style="{DynamicResource DangerButton}"/>
+            <Button x:Name="ScanLeftoverButton" Content="Cari leftover"/>
+            <Button x:Name="RemoveLeftoverButton" Content="Hapus leftover terpilih" Style="{DynamicResource DangerButton}"/>
+          </StackPanel>
+          <DockPanel Grid.Row="3">
+            <TextBlock x:Name="LeftoverHint" DockPanel.Dock="Top" Style="{DynamicResource MutedText}" Margin="0,0,0,4"
+                       Text="Pilih hanya item yang benar-benar milik aplikasi tersebut. File/folder masuk Recycle Bin; key registry dicadangkan ke file .reg sebelum dihapus."/>
+            <ListView x:Name="LeftoverList" SelectionMode="Extended">
+              <ListView.View><GridView>
+                <GridViewColumn Header="Lokasi" Width="1000" DisplayMemberBinding="{Binding Display}"/>
+              </GridView></ListView.View>
+            </ListView>
+          </DockPanel>
+        </Grid>
+      </TabItem>
+
+      <!-- == Pembersihan == -->
+      <TabItem x:Name="CleanupTab" Header="Pembersihan">
+        <Grid>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <WrapPanel Grid.Row="0" Margin="0,0,0,10">
+            <Button x:Name="ScanCleanupButton" Content="Scan aman"/>
+            <CheckBox x:Name="IncludeBrowserCache" Content="Browser cache Edge/Chrome" IsChecked="True"/>
+            <CheckBox x:Name="IncludeDownloads" Content="Analisis Downloads (&gt;30 hari)"/>
+            <TextBlock x:Name="CleanupHint" Style="{DynamicResource MutedText}" VerticalAlignment="Center"
+                       Text="Centang kategori yang ingin dibersihkan. Hasil dipindahkan ke Recycle Bin."/>
+          </WrapPanel>
+          <ListView x:Name="CleanupList" Grid.Row="1" SelectionMode="Single">
+            <ListView.View><GridView>
+              <GridViewColumn Width="40">
+                <GridViewColumn.CellTemplate><DataTemplate>
+                  <CheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Margin="0" HorizontalAlignment="Center"/>
+                </DataTemplate></GridViewColumn.CellTemplate>
+              </GridViewColumn>
+              <GridViewColumn Header="Kategori" Width="260" DisplayMemberBinding="{Binding Category}"/>
+              <GridViewColumn Header="File" Width="70" DisplayMemberBinding="{Binding FileCount}"/>
+              <GridViewColumn Header="Ukuran" Width="100" DisplayMemberBinding="{Binding SizeText}"/>
+              <GridViewColumn Header="Lokasi" Width="620" DisplayMemberBinding="{Binding Path}"/>
+            </GridView></ListView.View>
+          </ListView>
+          <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock x:Name="CleanupTotal" Text="Terpilih: 0 B" VerticalAlignment="Center" Margin="0,0,16,0" FontWeight="SemiBold"/>
+            <Button x:Name="CleanSelectedButton" Content="Kirim terpilih ke Recycle Bin" Style="{DynamicResource DangerButton}"/>
+            <Button x:Name="CleanupDuplicatesButton" Content="Cari file duplikat" Style="{DynamicResource SecondaryButton}"/>
+          </StackPanel>
+        </Grid>
+      </TabItem>
+
+      <!-- == Spesifikasi == -->
+      <TabItem x:Name="SystemTab" Header="Spesifikasi">
+        <Grid>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="LoadSystemInfoButton" Content="Baca informasi perangkat"/>
+            <Button x:Name="ExportSystemInfoButton" Content="Export TXT" Style="{DynamicResource SecondaryButton}"/>
+            <TextBlock x:Name="SystemHint" Style="{DynamicResource MutedText}" VerticalAlignment="Center"
+                       Text="Serial number tidak dibaca; laporan hanya disimpan di komputer ini."/>
+          </StackPanel>
+          <TextBox x:Name="SystemInfoBox" Grid.Row="1" Style="{DynamicResource OutputBox}"/>
+          <TextBlock x:Name="SystemFooter" Grid.Row="2" Style="{DynamicResource MutedText}" Margin="0,8,0,0"
+                     Text="Termasuk CPU, RAM, storage, GPU, baterai, firmware, jaringan, driver, TPM, Secure Boot, dan BitLocker."/>
+        </Grid>
+      </TabItem>
+
+      <!-- == Troubleshooting == -->
+      <TabItem x:Name="TroubleshootTab" Header="Troubleshooting">
+        <Grid>
+          <Grid.ColumnDefinitions><ColumnDefinition Width="360"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <ListView x:Name="TroubleList" Grid.Column="0" SelectionMode="Single" Margin="0,0,12,0">
+            <ListView.View><GridView>
+              <GridViewColumn Header="Pemeriksaan" Width="320" DisplayMemberBinding="{Binding Name}"/>
+            </GridView></ListView.View>
+          </ListView>
+          <Grid Grid.Column="1">
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+            <TextBlock x:Name="TroubleName" Grid.Row="0" Text="Pilih pemeriksaan" FontSize="18" FontWeight="SemiBold"/>
+            <TextBlock x:Name="TroubleDescription" Grid.Row="1" Style="{DynamicResource MutedText}" Margin="0,4,0,8"/>
+            <TextBox x:Name="TroubleOutput" Grid.Row="2" Style="{DynamicResource OutputBox}"/>
+            <Button x:Name="RunTroubleButton" Grid.Row="3" Content="Jalankan pemeriksaan / perbaikan" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+          </Grid>
+        </Grid>
+      </TabItem>
+
+      <!-- == Tools == -->
+      <TabItem x:Name="ToolsTab" Header="Tools">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel>
+            <TextBlock Text="Rencana daya" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
+              <ComboBox x:Name="PowerPlanBox" Width="230" Margin="0,0,8,0">
+                <ComboBoxItem Content="Seimbang" Tag="SCHEME_BALANCED" IsSelected="True"/>
+                <ComboBoxItem Content="Performa tinggi" Tag="SCHEME_MIN"/>
+                <ComboBoxItem Content="Hemat baterai" Tag="SCHEME_MAX"/>
+              </ComboBox>
+              <Button x:Name="ApplyPowerPlanButton" Content="Terapkan"/>
+            </StackPanel>
+
+            <TextBlock Text="File duplikat" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <TextBlock Style="{DynamicResource MutedText}" Text="Masukkan folder yang ingin diperiksa. File tidak dihapus otomatis."/>
+            <DockPanel Margin="0,6,0,6">
+              <Button x:Name="CancelDuplicatesButton" DockPanel.Dock="Right" Content="Batal" Style="{DynamicResource SecondaryButton}" IsEnabled="False" Margin="8,0,0,0"/>
+              <Button x:Name="ScanDuplicatesButton" DockPanel.Dock="Right" Content="Scan duplikat" Margin="8,0,0,0"/>
+              <TextBox x:Name="DuplicatePathBox" Text="%USERPROFILE%\Downloads"/>
+            </DockPanel>
+            <TextBox x:Name="DuplicateOutput" Style="{DynamicResource OutputBox}" Height="220" Margin="0,0,0,18"/>
+
+            <TextBlock Text="Lainnya" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <StackPanel Orientation="Horizontal">
+              <Button x:Name="BatteryReportButton" Content="Buat laporan baterai" Style="{DynamicResource SecondaryButton}"/>
+              <Button x:Name="OpenWindowsSettingsButton" Content="Buka pengaturan Windows" Style="{DynamicResource SecondaryButton}"/>
+            </StackPanel>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
+      <!-- == Pengaturan == -->
+      <TabItem x:Name="SettingsTab" Header="Pengaturan">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel MaxWidth="800" HorizontalAlignment="Left">
+            <TextBlock x:Name="SettingsTitle" Text="Pengaturan ZidWindowsApps" Style="{DynamicResource PageTitle}" Margin="0,0,0,14"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+              <TextBlock Text="Bahasa" Width="220" VerticalAlignment="Center"/>
+              <ComboBox x:Name="LanguageBox" Width="200">
+                <ComboBoxItem Content="Bahasa Indonesia" Tag="id"/>
+                <ComboBoxItem Content="English" Tag="en"/>
+              </ComboBox>
+            </StackPanel>
+            <CheckBox x:Name="TrayBox" Content="Tetap berjalan di system tray saat window ditutup" Margin="0,0,0,8"/>
+            <CheckBox x:Name="HideSystemBox" Content="Sembunyikan proses sistem secara default" Margin="0,0,0,8"/>
+            <CheckBox x:Name="ConfirmBox" Content="Minta konfirmasi sebelum tindakan" Margin="0,0,0,4"/>
+            <TextBlock Style="{DynamicResource MutedText}" Margin="20,0,0,12"
+                       Text="Penghapusan key registry, penonaktifan layanan, dan uninstall tetap selalu meminta konfirmasi."/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+              <CheckBox x:Name="ScheduledCleanupBox" Content="Aktifkan pembersihan terjadwal (03:00)"/>
+              <ComboBox x:Name="CleanupFrequencyBox" Width="160">
+                <ComboBoxItem Content="Harian"/>
+                <ComboBoxItem Content="Mingguan"/>
+                <ComboBoxItem Content="Bulanan"/>
+              </ComboBox>
+            </StackPanel>
+
+            <TextBlock x:Name="LogRetentionText" Margin="0,0,0,6"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+              <Button x:Name="ClearLogsButton" Content="Hapus semua log aktivitas" Style="{DynamicResource SecondaryButton}"/>
+              <Button x:Name="ManageExclusionsButton" Content="Tambah pengecualian folder" Style="{DynamicResource SecondaryButton}"/>
+            </StackPanel>
+            <TextBlock x:Name="SettingsPathText" Style="{DynamicResource MutedText}" Margin="0,0,0,12"/>
+            <Button x:Name="SaveSettingsButton" Content="Simpan pengaturan" HorizontalAlignment="Left"/>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+    </TabControl>
+  </Grid>
+
+  <!-- ============ STATUS BAR ============ -->
+  <Border Grid.Row="2" Background="{DynamicResource StatusBrush}" Padding="16,6">
+    <Grid>
+      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+      <TextBlock x:Name="ProgressText" Text="Siap" Style="{DynamicResource MutedText}" VerticalAlignment="Center"/>
+      <ProgressBar x:Name="OperationProgress" Grid.Column="1" Width="220" Height="8" IsIndeterminate="False" Visibility="Hidden"/>
+    </Grid>
+  </Border>
+</Grid>
