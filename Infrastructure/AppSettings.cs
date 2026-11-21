@@ -42,13 +42,15 @@ public sealed class AppSettings
     /// <summary>Menyimpan secara atomik (tulis ke file sementara lalu timpa). Mengembalikan false bila gagal.</summary>
     public bool Save(out string? error)
     {
+        string? temporaryFile = null;
         try
         {
             var dir = Path.GetDirectoryName(AppPaths.SettingsFile)!;
             Directory.CreateDirectory(dir);
-            var tmp = AppPaths.SettingsFile + ".tmp";
-            File.WriteAllText(tmp, JsonSerializer.Serialize(this, JsonOptions));
-            File.Move(tmp, AppPaths.SettingsFile, overwrite: true);
+            temporaryFile = Path.Combine(dir, Path.GetRandomFileName());
+            File.WriteAllText(temporaryFile, JsonSerializer.Serialize(this, JsonOptions));
+            File.Move(temporaryFile, AppPaths.SettingsFile, overwrite: true);
+            temporaryFile = null;
             error = null;
             return true;
         }
@@ -56,6 +58,15 @@ public sealed class AppSettings
         {
             error = ex.Message;
             return false;
+        }
+        finally
+        {
+            if (temporaryFile != null)
+            {
+                try { File.Delete(temporaryFile); }
+                catch (IOException) { }
+                catch (UnauthorizedAccessException) { }
+            }
         }
     }
 }
