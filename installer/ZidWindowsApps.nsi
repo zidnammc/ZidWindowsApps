@@ -15,7 +15,17 @@ ManifestDPIAware true
   !define OUT_FILE "ZidWindowsApps-Setup.exe"
 !endif
 !ifndef ICON_FILE
-  !define ICON_FILE "${__FILEDIR__}\..\launcher\app.ico"
+  !define ICON_FILE "..\launcher\app.ico"
+!endif
+
+!ifdef SELF_CONTAINED
+  !tempfile UNINSTALL_LIST
+  !ifdef NSIS_WIN32_MAKENSIS
+    !define BUILD_PS "powershell.exe"
+  !else
+    !define BUILD_PS "pwsh"
+  !endif
+  !system '"${BUILD_PS}" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "Write-UninstallList.ps1" -PublishDirectory "${BIN_DIR}" -OutputFile "${UNINSTALL_LIST}"' = 0
 !endif
 
 !define APP_NAME      "ZidWindowsApps"
@@ -31,7 +41,6 @@ ManifestDPIAware true
 !include "x64.nsh"
 !include "FileFunc.nsh"
 !insertmacro GetFileName
-!insertmacro un.GetFileName
 
 Name "${APP_NAME} ${APP_VERSION}"
 OutFile "${OUT_FILE}"
@@ -70,7 +79,7 @@ VIAddVersionKey "LegalCopyright" "${APP_PUBLISHER}"
 
 !insertmacro MUI_LANGUAGE "Indonesian"
 
-; Pastikan aplikasi selalu berada di folder bernama "${APP_NAME}" (uninstaller self-contained menghapus folder ini secara rekursif).
+; Pastikan aplikasi selalu berada di folder bernama "${APP_NAME}".
 Function DirLeave
   ${GetFileName} "$INSTDIR" $R0
   ${If} $R0 != "${APP_NAME}"
@@ -202,20 +211,17 @@ Section "Uninstall"
   Pop $0
 
 !ifdef SELF_CONTAINED
-  ; Ratusan file runtime: hapus rekursif, tetapi hanya bila folder memang bernama "${APP_NAME}".
-  ${un.GetFileName} "$INSTDIR" $R0
-  ${If} $R0 == "${APP_NAME}"
-    SetOutPath "$TEMP"
-    RMDir /r "$INSTDIR"
-  ${EndIf}
+  SetOutPath "$TEMP"
+  !include "${UNINSTALL_LIST}"
+  !delfile "${UNINSTALL_LIST}"
 !else
   Delete "$INSTDIR\ZidWindowsApps.exe"
   Delete "$INSTDIR\ZidWindowsApps.dll"
   Delete "$INSTDIR\ZidWindowsApps.runtimeconfig.json"
+!endif
   Delete "$INSTDIR\app.ico"
   Delete "$INSTDIR\Uninstall.exe"
   RMDir "$INSTDIR"
-!endif
 
   Delete "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk"
   Delete "$SMPROGRAMS\${APP_NAME}\Uninstall ${APP_NAME}.lnk"
