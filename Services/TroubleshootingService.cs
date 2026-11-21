@@ -9,7 +9,7 @@ public static class TroubleshootingService
 {
     private const string NeedAdmin = "Pemeriksaan ini butuh hak Administrator. Tutup aplikasi, lalu jalankan ulang sebagai Administrator (atau klik 'Jalankan sebagai Administrator' di bagian atas).";
 
-    private static Func<CancellationToken,IProgress<string>?,Task<string>> Ps(string script, int timeout = 120, bool admin = false) => async (ct, progress) =>
+    private static Func<CancellationToken, IProgress<string>?, Task<string>> Ps(string script, int timeout = 120, bool admin = false) => async (ct, progress) =>
     {
         if (admin && !Admin.IsAdministrator) return NeedAdmin;
         try

@@ -49,7 +49,7 @@ internal sealed partial class PreviewWindow
                 File.WriteAllText(dialog.FileName, report);
                 Notify("Laporan contoh disimpan.");
             }
-            catch (Exception ex)when (ex is IOException or UnauthorizedAccessException)
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
                 Notify("Gagal menyimpan: " + ex.Message);
             }
@@ -181,7 +181,7 @@ internal sealed partial class PreviewWindow
                     File.WriteAllText(dlg.FileName, log.Text);
                     Notify("Log contoh disimpan.");
                 }
-                catch (Exception ex)when (ex is IOException or UnauthorizedAccessException)
+                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
                 {
                     Notify("Gagal menyimpan: " + ex.Message);
                 }
@@ -328,7 +328,7 @@ internal sealed partial class PreviewWindow
                 UpdateSave();
                 Notify("Pengaturan pratinjau tersimpan.");
             }
-            catch (Exception ex)when (ex is IOException or UnauthorizedAccessException)
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
                 Notify("Gagal menyimpan: " + ex.Message);
             }

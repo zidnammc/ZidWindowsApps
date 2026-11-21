@@ -69,7 +69,7 @@ internal sealed class PreviewPreferences
             settings.Exclusions ??= new();
             return settings;
         }
-        catch (Exception ex)when (ex is IOException or UnauthorizedAccessException or JsonException)
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or JsonException)
         {
             return new();
         }

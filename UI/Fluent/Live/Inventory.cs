@@ -32,7 +32,8 @@ internal sealed partial class LiveWindow
             {
                 "CPU Tertinggi" => list.OrderByDescending(p => p.Cpu),
                 "Nama (A-Z)" => list.OrderBy(p => p.Name),
-                _ => list.OrderByDescending(p => p.MemoryBytes)}).ToList();
+                _ => list.OrderByDescending(p => p.MemoryBytes)
+            }).ToList();
             table.ItemsSource = rows;
             table.SelectedItem = rows.FirstOrDefault(p => p.Id == selected?.Id && p.StartTime == selected.StartTime);
             count.Text = rows.Count + " proses ditampilkan";

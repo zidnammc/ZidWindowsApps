@@ -16,7 +16,8 @@ internal sealed partial class PreviewWindow
                 "Memuat" => Stack(Label("Memuat data contoh…"), new ProgressBar { Height = 5, IsIndeterminate = true }),
                 "Kosong" => Label("Belum ada data untuk ditampilkan.", 14, false, "Muted"),
                 "Gagal" => Stack(Label("Data contoh gagal dimuat."), ActionButton("Coba lagi", () => Display("Normal"))),
-                _ => Stack(Label("Data siap", 15, true), Check("Tampilkan proses sistem", showSystem, v => showSystem = v), Unavailable("Tindakan sistem"))};
+                _ => Stack(Label("Data siap", 15, true), Check("Tampilkan proses sistem", showSystem, v => showSystem = v), Unavailable("Tindakan sistem"))
+            };
         }
 
         Display("Normal");

@@ -88,7 +88,7 @@ internal sealed partial class LiveWindow : FluentWindow
 
     protected override void LeavingPage()
     {
-        updateProcesses = null; updateCpuCard=null;
+        updateProcesses = null; updateCpuCard = null;
     }
 
     protected override void RequestAdmin()
@@ -99,11 +99,11 @@ internal sealed partial class LiveWindow : FluentWindow
         {
             try
             {
-                var(file, args) = AppPaths.LaunchCommand("--elevated --tab=" + current);
+                var (file, args) = AppPaths.LaunchCommand("--elevated --tab=" + current);
                 if (Process.Start(new ProcessStartInfo(file, args) { UseShellExecute = true, Verb = "runas" }) != null)
                     App.ExitApplication();
             }
-            catch (Win32Exception ex)when (ex.NativeErrorCode == 1223)
+            catch (Win32Exception ex) when (ex.NativeErrorCode == 1223)
             {
                 Notify("Permintaan izin dibatalkan.");
             }
@@ -167,7 +167,8 @@ internal sealed partial class LiveWindow : FluentWindow
             "troubleshooting" => Diagnostics(),
             "tools" => ToolsPage(),
             "settings" => SettingsPage(),
-            _ => Dashboard()};
+            _ => Dashboard()
+        };
     }
 
     private async Task LoadPage(string key)
@@ -305,7 +306,7 @@ internal sealed partial class LiveWindow : FluentWindow
         };
         progressTimer.Tick += (_, _) =>
         {
-            if (latest.Take()is string message)
+            if (latest.Take() is string message)
                 detail.Text = message;
         };
         progressTimer.Start();

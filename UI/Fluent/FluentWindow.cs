@@ -35,10 +35,10 @@ internal abstract partial class FluentWindow : Window
     protected abstract void RequestAdmin();
     protected abstract UIElement Page(string key);
     protected abstract string? Badge(string key);
-    protected virtual void LeavingPage() {}
-    protected virtual void ShowGallery() {}
+    protected virtual void LeavingPage() { }
+    protected virtual void ShowGallery() { }
     protected virtual bool IsPreview => false;
-    protected bool IsRoute(string key) => Routes.Any(r=>r.Key==key);
+    protected bool IsRoute(string key) => Routes.Any(r => r.Key == key);
     private readonly DispatcherTimer toastTimer = new()
     {
         Interval = TimeSpan.FromSeconds(4)
@@ -48,7 +48,7 @@ internal abstract partial class FluentWindow : Window
     private static T Xaml<T>(string name)
         where T : class
     {
-        using var stream = typeof(FluentWindow).Assembly.GetManifestResourceStream("ZidWindowsApps.Fluent."+name) ?? throw new InvalidDataException(name);
+        using var stream = typeof(FluentWindow).Assembly.GetManifestResourceStream("ZidWindowsApps.Fluent." + name) ?? throw new InvalidDataException(name);
         return (T)XamlReader.Load(stream);
     }
 
@@ -86,7 +86,7 @@ internal abstract partial class FluentWindow : Window
             toastTimer.Stop();
             Get<Border>("Toast").Visibility = Visibility.Collapsed;
         };
-        Closed += (_,_) => toastTimer.Stop();
+        Closed += (_, _) => toastTimer.Stop();
     }
 
     protected T Get<T>(string name)
@@ -300,7 +300,7 @@ internal abstract partial class FluentWindow : Window
         };
         list.PreviewMouseLeftButtonUp += (_, e) =>
         {
-            if (ItemsControl.ContainerFromElement(list, e.OriginalSource as DependencyObject)is ListBoxItem item)
+            if (ItemsControl.ContainerFromElement(list, e.OriginalSource as DependencyObject) is ListBoxItem item)
             {
                 list.SelectedItem = item.Content;
                 Select();

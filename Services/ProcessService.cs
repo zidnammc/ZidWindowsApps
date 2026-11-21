@@ -160,7 +160,8 @@ public static class ProcessService
                     throw new TimeoutException($"'{info.Name}' belum berhenti setelah 5 detik.");
             }
             catch (InvalidOperationException ex) when (ex.Message.Contains("exited", StringComparison.OrdinalIgnoreCase) ||
-                                                       ex.Message.Contains("sudah berhenti", StringComparison.OrdinalIgnoreCase)) { }
+                                                       ex.Message.Contains("sudah berhenti", StringComparison.OrdinalIgnoreCase))
+            { }
             catch (Win32Exception ex)
             {
                 throw new InvalidOperationException($"Akses ditolak saat menghentikan '{info.Name}'. Coba jalankan aplikasi sebagai Administrator. ({ex.Message})");

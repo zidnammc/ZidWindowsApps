@@ -28,7 +28,8 @@ internal sealed partial class PreviewWindow
             {
                 "CPU Tertinggi" => matches.OrderByDescending(p => p.Cpu),
                 "Nama (A-Z)" => matches.OrderBy(p => p.Name),
-                _ => matches.OrderByDescending(p => p.RamMb)}).ToList();
+                _ => matches.OrderByDescending(p => p.RamMb)
+            }).ToList();
             table.ItemsSource = rows;
             count.Text = rows.Count == 0 ? "Tidak ada proses yang cocok." : rows.Count + " proses ditampilkan";
         }

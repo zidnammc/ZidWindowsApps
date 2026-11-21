@@ -96,7 +96,8 @@ public sealed class App : System.Windows.Application
                     try { _activateEvent.WaitOne(); } catch { return; }
                     Dispatcher.BeginInvoke(new Action(ShowMainWindow));
                 }
-            }) { IsBackground = true, Name = "ActivationListener" };
+            })
+            { IsBackground = true, Name = "ActivationListener" };
             thread.Start();
         }
         catch { }
@@ -146,7 +147,7 @@ public sealed class App : System.Windows.Application
 
     public static void ExitApplication()
     {
-        if(Current?.MainWindow is Fluent.LiveWindow { HasOperation:true } live){live.ShowOperation();return;}
+        if (Current?.MainWindow is Fluent.LiveWindow { HasOperation: true } live) { live.ShowOperation(); return; }
         ExitRequested = true;
         Current?.Dispatcher.Invoke(() => Current.Shutdown());
     }

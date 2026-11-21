@@ -378,7 +378,10 @@ ConvertTo-Json -Compress";
         var backup = Path.Combine(AppPaths.RegistryBackupDirectory, $"{DateTime.Now:yyyyMMdd-HHmmss}-{Guid.NewGuid():N}-{(item.IsHklm ? "HKLM" : "HKCU")}-{safe}.reg");
         var psi = new ProcessStartInfo("reg.exe")
         {
-            UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
         };
         foreach (var a in new[] { "export", $"{(item.IsHklm ? "HKLM" : "HKCU")}\\{item.Target}", backup, "/y", item.Is32BitView ? "/reg:32" : "/reg:64" }) psi.ArgumentList.Add(a);
         using (var p = Process.Start(psi))

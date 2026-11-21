@@ -72,7 +72,8 @@ internal sealed partial class LiveWindow
             var dlg = new SaveFileDialog
             {
                 Filter = "Laporan teks (*.txt)|*.txt",
-                FileName = $"ZidWindowsApps-sistem-{DateTime.Now:yyyyMMdd}.txt"};
+                FileName = $"ZidWindowsApps-sistem-{DateTime.Now:yyyyMMdd}.txt"
+            };
             if (dlg.ShowDialog(this) == true)
                 _ = Work("Menyimpan laporan", async (_, _) =>
                 {
@@ -245,7 +246,7 @@ internal sealed partial class LiveWindow
         path.TextChanged += (_, _) => dupeResults.Children.Clear();
         var browse = ActionButton("Browse", () =>
         {
-            if (PickFolder()is string value)
+            if (PickFolder() is string value)
                 path.Text = value;
         });
         var scan = ActionButton("Pindai duplikat", () => _ = Work("Mencari file duplikat", async (ct, progress) =>
@@ -323,7 +324,7 @@ internal sealed partial class LiveWindow
         int ok = 0;
         var errors = new List<string>();
         var rootPath = PathGuard.Normalize(folder);
-        foreach (var(group, path)in selected)
+        foreach (var (group, path) in selected)
         {
             try
             {

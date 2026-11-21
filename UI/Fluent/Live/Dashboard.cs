@@ -84,9 +84,10 @@ internal sealed partial class LiveWindow
 
             var description = Label(desc, 12, false, "Muted");
             content.Children.Add(description);
-            if(route=="processes" && meter) {
-                var bar=(ProgressBar)content.Children[2];
-                updateCpuCard=()=>{bar.Value=cpu??0;description.Text="Pemakaian CPU "+(cpu?.ToString("0")??"–")+"%";};
+            if (route == "processes" && meter)
+            {
+                var bar = (ProgressBar)content.Children[2];
+                updateCpuCard = () => { bar.Value = cpu ?? 0; description.Text = "Pemakaian CPU " + (cpu?.ToString("0") ?? "–") + "%"; };
             }
             var b = ActionButton(title, () => Navigate(route));
             b.Content = content;

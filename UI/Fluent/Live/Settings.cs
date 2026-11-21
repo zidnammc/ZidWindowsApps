@@ -113,7 +113,7 @@ internal sealed partial class LiveWindow
         }), frequency);
         schedule.Children.Add(ActionButton("Tambah folder pengecualian", () =>
         {
-            if (PickFolder()is string dir && !s.ExcludedPaths.Contains(dir, StringComparer.OrdinalIgnoreCase))
+            if (PickFolder() is string dir && !s.ExcludedPaths.Contains(dir, StringComparer.OrdinalIgnoreCase))
             {
                 s.ExcludedPaths.Add(dir);
                 Render();

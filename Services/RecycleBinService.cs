@@ -13,17 +13,17 @@ public static class RecycleBinService
     [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
     private static extern int SHEmptyRecycleBin(IntPtr window, string root, uint flags);
 
-    public static (long Items,long Bytes) ReadSize(string drive)
+    public static (long Items, long Bytes) ReadSize(string drive)
     {
-        var info=new BinInfo{Size=Marshal.SizeOf<BinInfo>()};
-        Marshal.ThrowExceptionForHR(SHQueryRecycleBin(drive,ref info));
-        return (info.Items,info.Bytes);
+        var info = new BinInfo { Size = Marshal.SizeOf<BinInfo>() };
+        Marshal.ThrowExceptionForHR(SHQueryRecycleBin(drive, ref info));
+        return (info.Items, info.Bytes);
     }
 
     public static void Empty(string drive)
     {
         // A separate, in-app confirmation names this specific volume and its size.
-        Marshal.ThrowExceptionForHR(SHEmptyRecycleBin(IntPtr.Zero,drive,7));
+        Marshal.ThrowExceptionForHR(SHEmptyRecycleBin(IntPtr.Zero, drive, 7));
     }
 
     private const uint FO_DELETE = 3;

@@ -95,8 +95,8 @@ public sealed class CleanupService
                 var dir = Path.Combine(profile, cache);
                 if (!Directory.Exists(dir)) continue;
                 if ((File.GetAttributes(dir) & FileAttributes.ReparsePoint) != 0 || (File.GetAttributes(profile) & FileAttributes.ReparsePoint) != 0) continue;
-                var files=Collect(dir, true, 0, "*", ct, out long size);
-                if(files.Count>0)items.Add(new CleanupItem { Category=name, Path=dir, Size=size, Files=files });
+                var files = Collect(dir, true, 0, "*", ct, out long size);
+                if (files.Count > 0) items.Add(new CleanupItem { Category = name, Path = dir, Size = size, Files = files });
             }
 
     }

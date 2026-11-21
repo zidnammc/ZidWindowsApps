@@ -52,7 +52,7 @@ public static class PowerShellService
         }
 
         cancellationToken.ThrowIfCancellationRequested();
-        if(timeout.IsCancellationRequested) throw new TimeoutException($"Perintah PowerShell melebihi batas waktu {timeoutSeconds} detik.");
+        if (timeout.IsCancellationRequested) throw new TimeoutException($"Perintah PowerShell melebihi batas waktu {timeoutSeconds} detik.");
         return new PowerShellResult(process.ExitCode, Clean(await stdout.ConfigureAwait(false)), CleanError(await stderr.ConfigureAwait(false)));
     }
 
@@ -63,7 +63,7 @@ public static class PowerShellService
     private static async Task<string> ReadLines(StreamReader reader, IProgress<string> progress)
     {
         var output = new StringBuilder();
-        while(await reader.ReadLineAsync().ConfigureAwait(false) is string line)
+        while (await reader.ReadLineAsync().ConfigureAwait(false) is string line)
         {
             line = line.Replace("\0", "");
             output.AppendLine(line);
