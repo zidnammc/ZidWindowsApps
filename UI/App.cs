@@ -64,6 +64,7 @@ public sealed class App : System.Windows.Application
                 window = new MainWindow();
             }
             else window = new Fluent.LiveWindow();
+            window.WindowState = WindowState.Maximized;
             MainWindow = window;
             ConfigureTray();
             ListenForActivation();
