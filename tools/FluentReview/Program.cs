@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using ZidWindowsApps;
 
-static class Review
+static partial class Review
 {
     static readonly string[] keys =
     {
@@ -144,9 +144,9 @@ static class Review
     [STAThread]
     public static int Main(string[] args)
     {
-        if (args.Length != 2 || (args[1] != "before" && args[1] != "preview" && args[1] != "live"))
+        if (args.Length != 2 || (args[1] != "before" && args[1] != "preview" && args[1] != "live" && args[1] != "readme"))
         {
-            Console.Error.WriteLine("FluentReview <output-directory> before|preview|live");
+            Console.Error.WriteLine("FluentReview <output-directory> before|preview|live|readme");
             return 2;
         }
 
@@ -156,7 +156,9 @@ static class Review
             ShutdownMode = ShutdownMode.OnExplicitShutdown
         };
         SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(app.Dispatcher));
-        if (args[1] == "live")
+        if (args[1] == "readme")
+            Readme(output);
+        else if (args[1] == "live")
         {
             var type = typeof(MainWindow).Assembly.GetType("ZidWindowsApps.Fluent.LiveWindow", true)!;
             var w = (Window)Activator.CreateInstance(type, true)!;

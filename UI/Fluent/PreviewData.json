@@ -291,7 +291,7 @@
         {
           "id": "lo-1",
           "kind": "Folder",
-          "path": "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\User Data\\Crashpad",
+          "path": "C:\\Users\\Demo\\AppData\\Local\\Google\\Chrome\\User Data\\Crashpad",
           "size": "18,4 MB",
           "checked": true
         },
@@ -331,7 +331,7 @@
         {
           "id": "lo-5",
           "kind": "Folder",
-          "path": "C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Git",
+          "path": "C:\\Users\\Demo\\AppData\\Local\\Programs\\Git",
           "size": "1,2 MB",
           "checked": true
         }
@@ -350,7 +350,7 @@
         {
           "id": "lo-6",
           "kind": "Folder",
-          "path": "C:\\Users\\Lenovo\\AppData\\Roaming\\GitHub CLI",
+          "path": "C:\\Users\\Demo\\AppData\\Roaming\\GitHub CLI",
           "size": "128 KB",
           "checked": true
         }
@@ -390,12 +390,12 @@
       "type": "Desktop",
       "size": "284 MB",
       "installDate": "18/11/2026",
-      "location": "C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Antigravity",
+      "location": "C:\\Users\\Demo\\AppData\\Local\\Programs\\Antigravity",
       "leftovers": [
         {
           "id": "lo-9",
           "kind": "Folder",
-          "path": "C:\\Users\\Lenovo\\AppData\\Roaming\\Antigravity\\Cache",
+          "path": "C:\\Users\\Demo\\AppData\\Roaming\\Antigravity\\Cache",
           "size": "46,2 MB",
           "checked": true
         }
@@ -444,7 +444,7 @@
         {
           "id": "lo-11",
           "kind": "Folder",
-          "path": "C:\\Users\\Lenovo\\AppData\\Local\\Packages\\4505Fortemedia.FMAPOControl",
+          "path": "C:\\Users\\Demo\\AppData\\Local\\Packages\\4505Fortemedia.FMAPOControl",
           "size": "1,4 MB",
           "checked": true
         }
@@ -502,7 +502,7 @@
       "files": 9428,
       "sizeMb": 1136.64,
       "sizeLabel": "1,11 GB",
-      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Google\\Chrome\\User Data",
+      "path": "C:\\Users\\Demo\\AppData\\Local\\Google\\Chrome\\User Data",
       "checked": true,
       "isBrowser": true
     },
@@ -512,7 +512,7 @@
       "files": 1005,
       "sizeMb": 642.29,
       "sizeLabel": "642,29 MB",
-      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Temp\\",
+      "path": "C:\\Users\\Demo\\AppData\\Local\\Temp\\",
       "checked": true,
       "isBrowser": false
     },
@@ -522,7 +522,7 @@
       "files": 2462,
       "sizeMb": 229.08,
       "sizeLabel": "229,08 MB",
-      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Microsoft\\Edge\\User Data",
+      "path": "C:\\Users\\Demo\\AppData\\Local\\Microsoft\\Edge\\User Data",
       "checked": true,
       "isBrowser": true
     },
@@ -532,7 +532,7 @@
       "files": 15,
       "sizeMb": 18.11,
       "sizeLabel": "18,11 MB",
-      "path": "C:\\Users\\Lenovo\\AppData\\Local\\Microsoft\\Windows\\Explorer",
+      "path": "C:\\Users\\Demo\\AppData\\Local\\Microsoft\\Windows\\Explorer",
       "checked": true,
       "isBrowser": false
     },
@@ -562,7 +562,7 @@
       "files": 3,
       "sizeMb": 4.35,
       "sizeLabel": "4,35 MB",
-      "path": "C:\\Users\\Lenovo\\AppData\\Local\\CrashDumps",
+      "path": "C:\\Users\\Demo\\AppData\\Local\\CrashDumps",
       "checked": true,
       "isBrowser": false
     },
@@ -572,7 +572,7 @@
       "files": 63,
       "sizeMb": 0.05,
       "sizeLabel": "48,66 KB",
-      "path": "C:\\Users\\Lenovo\\AppData\\Roaming\\Microsoft\\Windows\\Recent",
+      "path": "C:\\Users\\Demo\\AppData\\Roaming\\Microsoft\\Windows\\Recent",
       "checked": true,
       "isBrowser": false
     }
