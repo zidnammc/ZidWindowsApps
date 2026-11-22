@@ -10,7 +10,7 @@ Aksi berisiko memerlukan konfirmasi. Pemindaian sisa aplikasi ditawarkan sesudah
 
 ### Distribusi dan pemulihan
 
-Installer Windows x64 self-contained berada di `bin/packages/1.2.0/ZidWindowsApps-Setup-1.2.0-x64.exe`. Paket berukuran 49.707.133 byte dengan SHA-256 `ED99918E2CF4A88E6D1FDFF1660E477598DB4BFBC3D1D02DBA55AB4615C0A9B8`. Assembly hasil publish memiliki versi 1.2.0.0 dan SHA-256 `7E044F0E8BA5755A03AF8C272D1BC5085EA386D06616137DEB67BE4515C5F3BB`.
+Installer Windows x64 self-contained berada di `bin/packages/1.2.0/ZidWindowsApps-Setup-1.2.0-x64.exe`. Paket berukuran 49.707.133 byte. Assembly hasil publish memiliki versi 1.2.0.0.
 
 Program juga dapat dijalankan langsung dari subfolder `win-x64`; seluruh isi folder diperlukan. Installer memperbarui entri aplikasi dan pintasan Windows.
 

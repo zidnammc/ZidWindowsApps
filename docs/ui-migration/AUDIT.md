@@ -2,7 +2,7 @@
 
 ZidWindowsApps 1.1.0 menggunakan WPF pada .NET 8. Program.Main memuat UI/App.cs, kemudian XamlReader memuat Resources/MainWindow.xaml dan Styles.xaml dari assembly. Handler di UI/MainWindow.* memanggil layanan C# dalam proses yang sama. WinForms menyediakan NotifyIcon. Build Windows memakai dotnet build, distribusi memakai build.ps1, dotnet publish dan NSIS. Versi berasal dari ZidWindowsApps.csproj.
 
-DLL pada dist-selfcontained-win-x64 identik dengan instalasi di Program Files (SHA-256 A00F6FB207E56EBD3EA3F96DD96BC34D55AA8F830CB91D774EC9F80A867C3D21). Folder sumber ini tidak mempunyai riwayat Git. Cadangan lengkap tersimpan di C:\Users\Lenovo\Backup\ZidWindowsApps-pre-new-ui-20261121-070431 (990 file, 387.357.409 byte). Pemilik memilih B1, WPF native.
+DLL pada dist-selfcontained-win-x64 identik dengan instalasi di Program Files. Folder sumber ini tidak mempunyai riwayat Git. Cadangan lengkap tersimpan di C:\Users\Lenovo\Backup\ZidWindowsApps-pre-new-ui-20261121-070431 (990 file, 387.357.409 byte). Pemilik memilih B1, WPF native.
 
 | Modul | Fungsi yang sudah ada dan batas integrasinya |
 |---|---|
