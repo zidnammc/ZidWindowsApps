@@ -11,6 +11,7 @@ public static class AppPaths
     public static string DataDirectory => Path.Combine(Local, "ZidWindowsApps");
     public static string LogsDirectory => Path.Combine(DataDirectory, "Logs");
     public static string RegistryBackupDirectory => Path.Combine(DataDirectory, "RegistryBackups");
+    public static string LastCleanupFile => Path.Combine(DataDirectory, "last-cleanup.json");
 
     // Lokasi lama dipertahankan supaya pengaturan pengguna yang sudah ada tetap terbaca.
     public static string SettingsFile => Path.Combine(

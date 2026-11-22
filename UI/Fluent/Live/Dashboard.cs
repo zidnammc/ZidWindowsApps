@@ -98,7 +98,16 @@ internal sealed partial class LiveWindow
             return b;
         }
 
-        var metrics = Columns(4, Tile("Proses Aktif", processCount.ToString(), "Pemakaian CPU " + (cpu?.ToString("0") ?? "–") + "%", "\uE9D9", "#d97706", "processes", true, cpu ?? 0), Tile("Auto-start Aktif", startupCount.ToString(), ready.Contains("autostart") ? "Termasuk layanan Windows" : "Aplikasi saat masuk Windows", "\uE945", "#2563eb", "autostart", true, startupTotal > 0 ? 100d * startupCount / startupTotal : 0), Tile("Ruang Kosong (" + drive.TrimEnd('\\') + ")", Format.Bytes(free), "Bebas dari " + Format.Bytes(capacity), "\uEDA2", "#059669", "sysinfo", true, 100 - diskFree), Tile("Potensi Pembersihan", scanned ? Format.Bytes(cache.Sum(c => c.Size)) : "Belum dipindai", scanned ? cache.Sum(c => c.Files.Count) + " file" : "Buka Cleanup untuk memindai", "\uE74D", "#9333ea", "cleanup", false));
+        UIElement CleanupTile()
+        {
+            if (scanned)
+                return Tile("Potensi Pembersihan", Format.Bytes(cache.Sum(c => c.Size)), cache.Sum(c => c.Files.Count) + " file siap diperiksa", "\uE74D", "#9333ea", "cleanup", false);
+            if (lastCleanup is { } last)
+                return Tile("Pembersihan Terakhir", Format.Bytes(last.Bytes) + " dibersihkan", last.Files + " file · " + last.When.ToString("d MMM HH:mm") + (last.Scheduled ? " (terjadwal)" : ""), "\uE74D", "#9333ea", "cleanup", false);
+            return Tile("Potensi Pembersihan", "Belum dipindai", "Buka Cleanup untuk memindai", "\uE74D", "#9333ea", "cleanup", false);
+        }
+
+        var metrics = Columns(4, Tile("Proses Aktif", processCount.ToString(), "Pemakaian CPU " + (cpu?.ToString("0") ?? "–") + "%", "\uE9D9", "#d97706", "processes", true, cpu ?? 0), Tile("Auto-start Aktif", startupCount.ToString(), ready.Contains("autostart") ? "Termasuk layanan Windows" : "Aplikasi saat masuk Windows", "\uE945", "#2563eb", "autostart", true, startupTotal > 0 ? 100d * startupCount / startupTotal : 0), Tile("Ruang Kosong (" + drive.TrimEnd('\\') + ")", Format.Bytes(free), "Bebas dari " + Format.Bytes(capacity), "\uEDA2", "#059669", "sysinfo", true, 100 - diskFree), CleanupTile());
         var links = Columns(4, Tile("Cleanup", "Periksa Sampah", "Pindai cache dan file sementara.", "\uE74D", "#9333ea", "cleanup", false), Tile("System Info", "Periksa Spesifikasi", "Lihat CPU, RAM dan firmware.", "\uE950", "#2563eb", "sysinfo", false), Tile("Diagnostik", "Troubleshooting", "Periksa jaringan, sistem dan baterai.", "\uE9D9", "#059669", "troubleshooting", false), Tile("Uninstaller", "Aplikasi Terpasang", "Tinjau aplikasi dan sisa instalasi.", "\uE8B7", "#be123c", "uninstaller", false));
         return Scroll(Stack(Card(hero), metrics, Label("Aksi Cepat", 16, true), links, Card(Stack(Label("Mode Aman Aktif", 13, true, "Accent"), Label("File pembersihan dipindahkan ke Recycle Bin. Periksa pilihan sebelum mengonfirmasi tindakan.", 13, false, "Muted")))));
     }

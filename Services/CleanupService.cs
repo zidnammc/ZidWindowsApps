@@ -150,40 +150,49 @@ public sealed class CleanupService
         int deleted = 0, failed = 0, skipped = 0;
         long freed = 0;
 
-        foreach (var item in items)
+        try
         {
-            ct.ThrowIfCancellationRequested();
-            progress?.Report($"Membersihkan: {item.Category}");
-
-            var batch = new List<(string Path, long Size)>();
-            foreach (var file in item.Files)
-            {
-                if (!File.Exists(file)) { skipped++; continue; }
-                if (PathGuard.IsExcluded(file, _settings.ExcludedPaths)) { skipped++; continue; }
-                long len = SafeLength(file);
-                // Mode terjadwal berjalan tanpa pengawasan: lewati file besar agar tidak memicu dialog Windows.
-                if (scheduled && len > ScheduledMaxFileBytes) { skipped++; continue; }
-                batch.Add((file, len));
-            }
-
-            foreach (var chunk in batch.Chunk(100))
+            foreach (var item in items)
             {
                 ct.ThrowIfCancellationRequested();
-                var paths = chunk.Select(c => c.Path).ToList();
-                if (RecycleBinService.TrySend(paths, out _))
+                progress?.Report($"Membersihkan: {item.Category}");
+
+                var batch = new List<(string Path, long Size)>();
+                foreach (var file in item.Files)
                 {
-                    deleted += chunk.Length;
-                    freed += chunk.Sum(c => c.Size);
-                    continue;
+                    if (!File.Exists(file)) { skipped++; continue; }
+                    if (PathGuard.IsExcluded(file, _settings.ExcludedPaths)) { skipped++; continue; }
+                    long len = SafeLength(file);
+                    // Mode terjadwal berjalan tanpa pengawasan: lewati file besar agar tidak memicu dialog Windows.
+                    if (scheduled && len > ScheduledMaxFileBytes) { skipped++; continue; }
+                    batch.Add((file, len));
                 }
-                // Salah satu file gagal (terkunci, dll.): coba satu per satu agar sisanya tetap terhapus.
-                foreach (var (path, size) in chunk)
+
+                foreach (var chunk in batch.Chunk(100))
                 {
-                    if (!File.Exists(path)) { deleted++; continue; }
-                    if (RecycleBinService.TrySend(path, out _)) { deleted++; freed += size; }
-                    else failed++;
+                    ct.ThrowIfCancellationRequested();
+                    var paths = chunk.Select(c => c.Path).ToList();
+                    if (RecycleBinService.TrySend(paths, out _))
+                    {
+                        deleted += chunk.Length;
+                        freed += chunk.Sum(c => c.Size);
+                        continue;
+                    }
+                    // Salah satu file gagal (terkunci, dll.): coba satu per satu agar sisanya tetap terhapus.
+                    foreach (var (path, size) in chunk)
+                    {
+                        // Sudah dipindahkan oleh operasi batch sebelum gagal.
+                        if (!File.Exists(path)) { deleted++; freed += size; continue; }
+                        if (RecycleBinService.TrySend(path, out _)) { deleted++; freed += size; }
+                        else failed++;
+                    }
                 }
             }
+        }
+        finally
+        {
+            // Dicatat juga bila dibatalkan di tengah jalan, agar dashboard menampilkan hasil yang sudah terjadi.
+            CleanupHistory.Record(new CleanupResult(deleted, failed, skipped, freed), scheduled);
         }
         return new CleanupResult(deleted, failed, skipped, freed);
     }

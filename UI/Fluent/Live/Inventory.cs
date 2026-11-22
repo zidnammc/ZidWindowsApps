@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace ZidWindowsApps.Fluent;
 internal sealed partial class LiveWindow
 {
-    private bool cleanedFiles;
+    private LastCleanup? lastCleanup = CleanupHistory.Load();
     private bool showSystem, includeBrowser = true, includeDownloads;
     private string processQuery = "", processOrder = "RAM Tertinggi", startupQuery = "", startupFilter = "Semua", appQuery = "", appFilter = "Semua";
     private InstalledApp? inspected, removedApp;
@@ -296,13 +296,14 @@ internal sealed partial class LiveWindow
                 try
                 {
                     var result = await Task.Run(() => new CleanupService(App.Settings).Delete(rows, false, progress, ct));
-                    cleanedFiles |= result.Deleted > 0;
                     return $"{result.Deleted} file dipindahkan ({Format.Bytes(result.FreedBytes)}), {result.Skipped} dilewati, {result.Failed} gagal.";
                 }
                 finally
                 {
                     cache.Clear();
                     scanned = false;
+                    lastCleanup = CleanupHistory.Load();
+                    MeasureTelemetry();
                 }
             });
         }, "primary");
@@ -345,7 +346,7 @@ internal sealed partial class LiveWindow
             Render();
         }
 
-        var header = Card(Stack(Label(scanned ? Format.Bytes(cache.Sum(x => x.Size)) + " siap diperiksa" : "Belum dipindai", 21, true), Label("Centang kategori yang ingin dipindahkan ke Recycle Bin.", 13, false, "Muted"), Row(Check("Cache browser", includeBrowser, v =>
+        var header = Card(Stack(Label(scanned ? Format.Bytes(cache.Sum(x => x.Size)) + " siap diperiksa" : "Belum dipindai", 21, true), Label(!scanned && lastCleanup != null ? "Pembersihan terakhir · " + LastCleanupText(lastCleanup) : "Centang kategori yang ingin dipindahkan ke Recycle Bin.", 13, false, "Muted"), Row(Check("Cache browser", includeBrowser, v =>
         {
             includeBrowser = v;
             Reset();
@@ -355,30 +356,36 @@ internal sealed partial class LiveWindow
             Reset();
         }), ActionButton("Scan Aman", ScanCache))));
         var footer = Stack(Row(total, clean, ActionButton("Cari file duplikat", () => Navigate("tools"))));
-        if (cleanedFiles)
-            footer.Children.Add(Row(Label("Ruang disk bertambah setelah Recycle Bin dikosongkan.", 12, false, "Muted"), ActionButton("Kosongkan Recycle Bin (" + drive + ")", () =>
-            {
-                try
-                {
-                    var info = RecycleBinService.ReadSize(drive);
-                    if (info.Items == 0)
-                    {
-                        Notify("Recycle Bin kosong.");
-                        return;
-                    }
-
-                    ConfirmWork("Kosongkan Recycle Bin " + drive + "?", info.Items + " item (" + Format.Bytes(info.Bytes) + ") pada drive ini akan dihapus permanen.", "Kosongkan", async (_, _) =>
-                    {
-                        await Task.Run(() => RecycleBinService.Empty(drive));
-                        cleanedFiles = false;
-                        return "Recycle Bin " + drive + " dikosongkan.";
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Notify("Ukuran Recycle Bin tidak dapat dibaca: " + ex.Message);
-                }
-            }, "danger")));
+        footer.Children.Add(Row(Label("Ruang disk bertambah setelah Recycle Bin dikosongkan.", 12, false, "Muted"), ActionButton("Kosongkan Recycle Bin (" + drive + ")", EmptyRecycleBin, "danger")));
         return Framed(header, scanned ? Card(table) : Card(Label("Pilih Scan Aman untuk membaca ukuran file.", 14, false, "Muted")), Card(footer));
+    }
+
+    private static string LastCleanupText(LastCleanup last) => Format.Bytes(last.Bytes) + " · " + last.Files + " file · " + last.When.ToString("d MMM yyyy HH:mm") + (last.Scheduled ? " (terjadwal)" : "");
+
+    private void EmptyRecycleBin()
+    {
+        (long Items, long Bytes) info;
+        try
+        {
+            info = RecycleBinService.ReadSize(drive);
+        }
+        catch (Exception ex)
+        {
+            Notify("Ukuran Recycle Bin tidak dapat dibaca: " + ex.Message);
+            return;
+        }
+
+        if (info.Items == 0)
+        {
+            Notify("Recycle Bin " + drive + " sudah kosong.");
+            return;
+        }
+
+        ConfirmWork("Kosongkan Recycle Bin " + drive + "?", info.Items + " item (" + Format.Bytes(info.Bytes) + ") pada drive ini akan dihapus permanen.", "Kosongkan", async (_, _) =>
+        {
+            await Task.Run(() => RecycleBinService.Empty(drive));
+            MeasureTelemetry();
+            return "Recycle Bin " + drive + " dikosongkan · " + Format.Bytes(info.Bytes) + " dibebaskan.";
+        });
     }
 }
