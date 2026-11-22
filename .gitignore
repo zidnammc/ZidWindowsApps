@@ -1,10 +1,23 @@
+# Build outputs
 bin/
 obj/
 out/
 dist/
-refs/*.dll
-launcher/*.exe
-launcher/*.res
-*.user
 /dist-selfcontained-*/
 /ZidWindowsApps-Setup*.exe
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Reference DLLs for Linux/CI builds (Microsoft binaries, not shipped)
+refs/*.dll
+
+# Native launcher build artefacts
+launcher/*.exe
+launcher/*.res
+
+# Logs
+*.log

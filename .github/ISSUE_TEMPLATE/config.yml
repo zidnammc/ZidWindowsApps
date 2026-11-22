@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Download the app
+    url: https://github.com/zidnammc/ZidWindowsApps/releases
+    about: Questions about installing or using the app? Check the Releases page first.
