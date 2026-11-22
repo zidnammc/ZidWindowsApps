@@ -6,7 +6,9 @@ namespace ZidWindowsApps;
 
 public static class RecycleBinService
 {
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    // SHQUERYRBINFO memakai packing bawaan di x64/ARM64 (cbSize = 24). Pack = 1 menghasilkan 20 byte
+    // sehingga SHQueryRecycleBin selalu gagal dengan E_INVALIDARG.
+    [StructLayout(LayoutKind.Sequential)]
     private struct BinInfo { public int Size; public long Bytes; public long Items; }
     [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
     private static extern int SHQueryRecycleBin(string root, ref BinInfo info);
@@ -20,10 +22,15 @@ public static class RecycleBinService
         return (info.Items, info.Bytes);
     }
 
+    private const uint SHERB_NOCONFIRMATION = 0x1, SHERB_NOPROGRESSUI = 0x2, SHERB_NOSOUND = 0x4;
+    private const int E_UNEXPECTED = unchecked((int)0x8000FFFF);
+
     public static void Empty(string drive)
     {
         // A separate, in-app confirmation names this specific volume and its size.
-        Marshal.ThrowExceptionForHR(SHEmptyRecycleBin(IntPtr.Zero, drive, 7));
+        int hr = SHEmptyRecycleBin(IntPtr.Zero, drive, SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND);
+        // Windows mengembalikan E_UNEXPECTED bila Recycle Bin sudah kosong.
+        if (hr != E_UNEXPECTED) Marshal.ThrowExceptionForHR(hr);
     }
 
     private const uint FO_DELETE = 3;
