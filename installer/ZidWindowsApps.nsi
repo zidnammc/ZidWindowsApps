@@ -29,7 +29,7 @@ ManifestDPIAware true
 !endif
 
 !define APP_NAME      "ZidWindowsApps"
-!define APP_VERSION   "1.2.1 beta.1"
+!define APP_VERSION   "1.2.2 beta"
 !define APP_PUBLISHER "Zid"
 !define APP_EXE       "ZidWindowsApps.exe"
 !define UNINST_KEY    "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
@@ -48,7 +48,7 @@ InstallDir "$PROGRAMFILES64\${APP_NAME}"
 InstallDirRegKey HKLM "Software\${APP_NAME}" "InstallDir"
 BrandingText "${APP_NAME} ${APP_VERSION}"
 
-VIProductVersion "1.2.1.1"
+VIProductVersion "1.2.2.0"
 VIAddVersionKey "ProductName" "${APP_NAME}"
 VIAddVersionKey "CompanyName" "${APP_PUBLISHER}"
 VIAddVersionKey "FileDescription" "Installer ${APP_NAME}"
