@@ -114,7 +114,12 @@ internal abstract partial class FluentWindow
             VerticalAlignment = VerticalAlignment.Center
         };
         foreach (var i in items)
+        {
+            // Label tanpa margin menempel pada tombol/segmen di sebelahnya.
+            if (i is TextBlock t && t.Margin == new Thickness(0))
+                t.Margin = new Thickness(0, 0, 10, 0);
             p.Children.Add(i);
+        }
         return p;
     }
 

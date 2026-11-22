@@ -22,6 +22,7 @@ public sealed class App : System.Windows.Application
     public static bool ExitRequested { get; set; }
 
     private static WinForms.NotifyIcon? _tray;
+    private static WindowState _restoreState = WindowState.Maximized;
     private EventWaitHandle? _activateEvent;
     private bool _trayHintShown;
 
@@ -65,6 +66,10 @@ public sealed class App : System.Windows.Application
             }
             else window = new Fluent.LiveWindow();
             window.WindowState = WindowState.Maximized;
+            window.StateChanged += (_, _) =>
+            {
+                if (window.WindowState != WindowState.Minimized) _restoreState = window.WindowState;
+            };
             MainWindow = window;
             ConfigureTray();
             ListenForActivation();
@@ -123,12 +128,18 @@ public sealed class App : System.Windows.Application
 
         _tray = new WinForms.NotifyIcon
         {
-            Icon = SystemIcons.Application,
+            Icon = AppIcon(),
             Text = "ZidWindowsApps",
             Visible = true,
             ContextMenuStrip = menu,
         };
         _tray.DoubleClick += (_, _) => ShowMainWindow();
+    }
+
+    private static Icon AppIcon()
+    {
+        try { return Icon.ExtractAssociatedIcon(AppPaths.ExecutablePath) ?? SystemIcons.Application; }
+        catch (Exception ex) when (ex is ArgumentException or IOException) { return SystemIcons.Application; }
     }
 
     public static void ShowTrayHintOnce()
@@ -145,7 +156,8 @@ public sealed class App : System.Windows.Application
         var w = Current?.MainWindow;
         if (w == null) return;
         w.Show();
-        if (w.WindowState == WindowState.Minimized) w.WindowState = WindowState.Normal;
+        // Kembali ke keadaan sebelum diperkecil (biasanya Maximized), bukan selalu Normal.
+        if (w.WindowState == WindowState.Minimized) w.WindowState = _restoreState;
         w.Activate();
     }
 
